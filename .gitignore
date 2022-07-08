@@ -15,3 +15,4 @@ yarn-error.log
 /.vscode
 /.tool-versions
 /_ide_helper.php
+.DS_Store
