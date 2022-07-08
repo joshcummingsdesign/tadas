@@ -1,8 +1,7 @@
 <?php
 
-use App\Http\Livewire\Collections;
-use App\Http\Livewire\Todos;
 use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,12 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::redirect('/', '/tadas');
+require __DIR__ . '/auth.php';
 
-Route::get('/tadas', Collections::class)
-    ->middleware(['auth'])->name('tadas');
+Route::redirect('/', '/dashboard');
 
-Route::get('/tadas/{id}', Todos::class)
-    ->middleware(['auth'])->name('tada');
-
-require __DIR__.'/auth.php';
+Route::get('/dashboard', static fn () => Inertia::render('Dashboard'))
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');

@@ -16,19 +16,23 @@ Everyone has todos, but do you have tadas?
 2. Start the services
 
         lando start
+ 
+4. Install composer dependencies
 
-3. Generate an app key
+        lando composer install
+
+5. Generate an app key
 
         lando php artisan key:generate
 
-4. Run migrations
+6. Run migrations
 
         lando php artisan migrate
  
-5. Install the project dependencies
+7. Install npm dependencies
 
         npm install
 
-6. Start the project watcher
+8. Start the dev server
 
         npm run dev
