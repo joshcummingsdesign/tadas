@@ -19,5 +19,5 @@ require __DIR__ . '/auth.php';
 Route::redirect('/', '/dashboard');
 
 Route::get('/dashboard', static fn () => Inertia::render('Dashboard'))
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
+  ->middleware(['auth', 'verified'])
+  ->name('dashboard');

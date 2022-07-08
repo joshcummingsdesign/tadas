@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset name="tadas">
+  <!-- Exclude files -->
+  <exclude-pattern>vendor</exclude-pattern>
+  <exclude-pattern>*.js</exclude-pattern>
+  <exclude-pattern>*.css</exclude-pattern>
+
+  <!-- Extend PSR2 -->
+  <rule ref="PSR2">
+    <!-- Allow long lines -->
+    <exclude name="Generic.Files.LineLength"/>
+
+    <!-- Allow class opening braces to be on same line -->
+    <exclude name="PSR2.Classes.ClassDeclaration.OpenBraceNewLine"/>
+
+    <!-- Allow function opening braces to be on same line -->
+    <exclude name="Squiz.Functions.MultiLineFunctionDeclaration.BraceOnSameLine"/>
+  </rule>
+
+  <!-- Require camel case method names -->
+  <rule ref="PSR1.Methods.CamelCapsMethodName" />
+
+  <!-- Disallow underscore prefixes in method names -->
+  <rule ref="PSR2.Methods.MethodDeclaration.Underscore" />
+
+  <!-- Require class opening braces be on same line -->
+  <rule ref="Generic.Classes.OpeningBraceSameLine"/>
+
+  <!-- Require function opening braces be on same line -->
+  <rule ref="Generic.Functions.OpeningFunctionBraceKernighanRitchie"/>
+
+  <!-- Enforce 2 spaces for indentation -->
+  <rule ref="Generic.WhiteSpace.ScopeIndent">
+    <properties>
+      <property name="indent" value="2"/>
+      <property name="exact" value="true" />
+    </properties>
+  </rule>
+  <rule ref="Squiz.Functions.MultiLineFunctionDeclaration">
+    <properties>
+      <property name="indent" value="2" />
+      <property name="exact" value="true" />
+    </properties>
+  </rule>
+  <rule ref="PSR2.Methods.FunctionCallSignature">
+    <properties>
+      <property name="indent" value="2" />
+      <property name="exact" value="true" />
+    </properties>
+  </rule>
+</ruleset>
