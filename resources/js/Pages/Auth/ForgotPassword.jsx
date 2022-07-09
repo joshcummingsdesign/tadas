@@ -1,51 +1,86 @@
-import React from 'react';
-import Button from '@/Components/Button';
-import Guest from '@/Layouts/Guest';
-import Input from '@/Components/Input';
-import ValidationErrors from '@/Components/ValidationErrors';
-import { Head, useForm } from '@inertiajs/inertia-react';
+/** @jsxImportSource @emotion/react */
+import React from "react";
+import Auth from "@/Layouts/Auth";
+import { useForm } from "@inertiajs/inertia-react";
+import { TextField, Button, Typography } from "@mui/material";
+import { css } from "@emotion/react";
+import Link from "@/Components/Link";
 
 export default function ForgotPassword({ status }) {
-    const { data, setData, post, processing, errors } = useForm({
-        email: '',
-    });
+  const { data, setData, post, processing, errors } = useForm({
+    email: "",
+  });
 
-    const onHandleChange = (event) => {
-        setData(event.target.name, event.target.value);
-    };
+  const onHandleChange = (event) => {
+    setData(event.target.name, event.target.value);
+  };
 
-    const submit = (e) => {
-        e.preventDefault();
-        post(route('password.email'));
-    };
+  const submit = (e) => {
+    e.preventDefault();
+    post(route("password.email"));
+  };
 
-    return (
-        <Guest>
-            <Head title="Forgot Password" />
+  return (
+    <Auth title={"Reset Password"} errors={errors} status={status}>
+      <Typography
+        css={css`
+          margin-bottom: 5px;
+        `}
+        color="text.secondary"
+      >
+        Forgot your password? No problem. Just let us know your email address
+        and we will email you a password reset link that will allow you to
+        choose a new one.
+      </Typography>
 
-            <div>
-                Forgot your password? No problem. Just let us know your email address and we will email you a password
-                reset link that will allow you to choose a new one.
-            </div>
+      <form onSubmit={submit}>
+        <TextField
+          css={css`
+            width: 100%;
+            margin-bottom: 20px;
+          `}
+          id="email"
+          name="email"
+          label="Email"
+          type="email"
+          autoComplete="username"
+          required={true}
+          autoFocus={true}
+          value={data.email}
+          onChange={onHandleChange}
+        />
+        <Button
+          css={css`
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+          `}
+          type="submit"
+          variant="contained"
+          disabled={processing}
+        >
+          Reset Password
+        </Button>
 
-            {status && <div>{status}</div>}
+        <div
+          css={css`
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+          `}
+        >
+          <Typography
+            css={css`
+              margin-right: 5px;
+            `}
+            color="text.secondary"
+          >
+            Remember your password?
+          </Typography>
 
-            <ValidationErrors errors={errors} />
-
-            <form onSubmit={submit}>
-                <Input
-                    type="text"
-                    name="email"
-                    value={data.email}
-                    isFocused={true}
-                    handleChange={onHandleChange}
-                />
-                <div>
-                    <Button className="ml-4" processing={processing}>
-                        Email Password Reset Link
-                    </Button>
-                </div>
-            </form>
-        </Guest>
-    );
+          <Link href={route("login")}>Log in</Link>
+        </div>
+      </form>
+    </Auth>
+  );
 }

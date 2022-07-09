@@ -1,8 +1,8 @@
 name: tadas
 recipe: laravel
 config:
-  php: '8.1'
-  composer_version: '2.3.9'
+  php: "8.1"
+  composer_version: "2.3.9"
   via: apache:2.4
   webroot: public
   database: mysql:8.0
@@ -14,6 +14,11 @@ services:
       - rm -f /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && /etc/init.d/apache2 reload
   database:
     portforward: 3307
+  mailhog:
+    type: mailhog:v1.0.1
+    portforward: 1025
+    hogfrom:
+      - appserver
 tooling:
   xdebug-on:
     service: appserver

@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,9 +16,6 @@ use Inertia\Inertia;
 */
 
 require __DIR__ . '/auth.php';
+require __DIR__ . '/todos.php';
 
-Route::redirect('/', '/dashboard');
-
-Route::get('/dashboard', static fn () => Inertia::render('Dashboard'))
-  ->middleware(['auth', 'verified'])
-  ->name('dashboard');
+Route::redirect('/', '/tadas')->name('home');

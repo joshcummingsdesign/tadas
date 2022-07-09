@@ -1,84 +1,128 @@
-import React, { useEffect } from 'react';
-import Button from '@/Components/Button';
-import Checkbox from '@/Components/Checkbox';
-import Guest from '@/Layouts/Guest';
-import Input from '@/Components/Input';
-import Label from '@/Components/Label';
-import ValidationErrors from '@/Components/ValidationErrors';
-import { Head, Link, useForm } from '@inertiajs/inertia-react';
+/** @jsxImportSource @emotion/react */
+import React, { useEffect } from "react";
+import Auth from "@/Layouts/Auth";
+import Link from "@/Components/Link";
+import { useForm } from "@inertiajs/inertia-react";
+import { css } from "@emotion/react";
+import {
+  Button,
+  TextField,
+  Typography,
+  Checkbox,
+  FormGroup,
+  FormControlLabel,
+} from "@mui/material";
 
 export default function Login({ status, canResetPassword }) {
-    const { data, setData, post, processing, errors, reset } = useForm({
-        email: '',
-        password: '',
-        remember: '',
-    });
+  const { data, setData, post, processing, errors, reset } = useForm({
+    email: "",
+    password: "",
+    remember: false,
+  });
 
-    useEffect(() => {
-        return () => {
-            reset('password');
-        };
-    }, []);
-
-    const onHandleChange = (event) => {
-        setData(event.target.name, event.target.type === 'checkbox' ? event.target.checked : event.target.value);
+  useEffect(() => {
+    return () => {
+      reset("password");
     };
+  }, []);
 
-    const submit = (e) => {
-        e.preventDefault();
-        post(route('login'));
-    };
-
-    return (
-        <Guest>
-            <Head title="Log in" />
-
-            {status && <div>{status}</div>}
-
-            <ValidationErrors errors={errors} />
-
-            <form onSubmit={submit}>
-                <div>
-                    <Label forInput="email" value="Email" />
-                    <Input
-                        type="text"
-                        name="email"
-                        value={data.email}
-                        autoComplete="username"
-                        isFocused={true}
-                        handleChange={onHandleChange}
-                    />
-                </div>
-                <div>
-                    <Label forInput="password" value="Password" />
-                    <Input
-                        type="password"
-                        name="password"
-                        value={data.password}
-                        autoComplete="current-password"
-                        handleChange={onHandleChange}
-                    />
-                </div>
-                <div>
-                    <label>
-                        <Checkbox name="remember" value={data.remember} handleChange={onHandleChange} />
-                        <span>Remember me</span>
-                    </label>
-                </div>
-                <div>
-                    <Link href={route('register')}>
-                        Register
-                    </Link>
-                    {canResetPassword && (
-                        <Link href={route('password.request')}>
-                            Reset Password
-                        </Link>
-                    )}
-                    <Button processing={processing}>
-                        Log in
-                    </Button>
-                </div>
-            </form>
-        </Guest>
+  const onHandleChange = (event) => {
+    setData(
+      event.target.name,
+      event.target.type === "checkbox"
+        ? event.target.checked
+        : event.target.value
     );
+  };
+
+  const submit = (e) => {
+    e.preventDefault();
+    post(route("login"));
+  };
+
+  return (
+    <Auth title={"Log in"} errors={errors} status={status}>
+      <form onSubmit={submit}>
+        <TextField
+          css={css`
+            width: 100%;
+            margin-bottom: 20px;
+          `}
+          id="email"
+          name="email"
+          label="Email"
+          type="email"
+          autoComplete="username"
+          required={true}
+          autoFocus={true}
+          value={data.email}
+          onChange={onHandleChange}
+        />
+
+        <TextField
+          css={css`
+            width: 100%;
+            margin-bottom: 20px;
+          `}
+          id="password"
+          name="password"
+          label="Password"
+          type="password"
+          autoComplete="current-password"
+          required={true}
+          value={data.password}
+          onChange={onHandleChange}
+        />
+
+        <Button
+          css={css`
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+          `}
+          type="submit"
+          variant="contained"
+          disabled={processing}
+        >
+          Log in
+        </Button>
+
+        <FormGroup>
+          <FormControlLabel
+            label="Remember Me"
+            control={
+              <Checkbox
+                name="remember"
+                checked={data.remember}
+                onChange={onHandleChange}
+              />
+            }
+          />
+        </FormGroup>
+
+        <div
+          css={css`
+            margin: 10px 0;
+            display: flex;
+            justify-content: center;
+          `}
+        >
+          <Typography
+            css={css`
+              margin-right: 5px;
+            `}
+            color="text.secondary"
+          >
+            Don't have an account?
+          </Typography>
+
+          <Link href={route("register")}>Sign up</Link>
+        </div>
+
+        {canResetPassword && (
+          <Link href={route("password.request")}>Forgot password?</Link>
+        )}
+      </form>
+    </Auth>
+  );
 }
