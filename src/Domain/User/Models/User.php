@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace Domain\User\Models;
 
+use Domain\Tadas\Models\Tada;
+use Domain\Tadas\Models\TadaList;
 use Eloquent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -45,4 +48,18 @@ class User extends Authenticatable {
   protected $casts = [
     'email_verified_at' => 'datetime',
   ];
+
+  /**
+   * Get the tada lists for a user.
+   */
+  public function tadaLists(): HasMany {
+    return $this->hasMany(TadaList::class);
+  }
+
+  /**
+   * Get the tadas for a user.
+   */
+  public function tadas(): HasMany {
+    return $this->hasMany(Tada::class);
+  }
 }

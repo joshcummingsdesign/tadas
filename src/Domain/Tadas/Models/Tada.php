@@ -2,9 +2,15 @@
 
 namespace Domain\Tadas\Models;
 
+use Domain\User\Models\User;
+use Eloquent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+/**
+ * @mixin Eloquent
+ */
 class Tada extends Model {
   use HasFactory;
 
@@ -37,4 +43,11 @@ class Tada extends Model {
   protected $casts = [
     'is_completed' => 'boolean',
   ];
+
+  /**
+   * Get the user a tada belongs to.
+   */
+  public function user(): BelongsTo {
+    return $this->belongsTo(User::class);
+  }
 }

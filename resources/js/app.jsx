@@ -22,4 +22,4 @@ createInertiaApp({
   },
 });
 
-InertiaProgress.init({ color: "#90caf9" });
+InertiaProgress.init({ color: "#ce93d8" });
