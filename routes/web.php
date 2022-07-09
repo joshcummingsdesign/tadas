@@ -16,6 +16,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 require __DIR__ . '/auth.php';
-require __DIR__ . '/todos.php';
+require __DIR__ . '/tadas.php';
 
 Route::redirect('/', '/tadas')->name('home');
