@@ -50,4 +50,11 @@ class Tada extends Model {
   public function user(): BelongsTo {
     return $this->belongsTo(User::class);
   }
+
+  /**
+   * Get the tada list a tada belongs to.
+   */
+  public function tadaList(): BelongsTo {
+    return $this->belongsTo(TadaList::class);
+  }
 }

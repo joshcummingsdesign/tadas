@@ -7,6 +7,7 @@ use Eloquent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @mixin Eloquent
@@ -29,5 +30,12 @@ class TadaList extends Model {
    */
   public function user(): BelongsTo {
     return $this->belongsTo(User::class);
+  }
+
+  /**
+   * Get the tadas for a tada list.
+   */
+  public function tadas(): HasMany {
+    return $this->hasMany(Tada::class);
   }
 }
