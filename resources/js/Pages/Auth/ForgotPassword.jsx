@@ -24,7 +24,7 @@ export default function ForgotPassword({ status }) {
     <Auth title={"Reset Password"} errors={errors} status={status}>
       <Typography
         css={css`
-          margin-bottom: 5px;
+          margin-bottom: 30px;
         `}
         color="text.secondary"
       >
