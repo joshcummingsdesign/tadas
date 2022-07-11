@@ -14,12 +14,20 @@ export default function TadaListMain() {
     <section
       css={css`
         padding: 24px 0;
-        height: calc(100vh - 64px);
+        height: calc(100vh - 56px);
         width: 100%;
         overflow-y: auto;
         background-color: ${theme.palette.mode === "light"
           ? "rgba(0,0,0,0.03)"
           : "rgba(255,255,255,0.03)"};
+
+        ${theme.breakpoints.up("sm")} {
+          height: calc(100vh - 64px);
+        }
+
+        ${theme.breakpoints.up("md")} {
+          width: calc(100% - 300px);
+        }
       `}
     >
       <Container>

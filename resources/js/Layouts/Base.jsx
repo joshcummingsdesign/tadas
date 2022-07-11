@@ -3,7 +3,7 @@ import Nav from "@/Components/Nav";
 import { getDesignTokens } from "@/Layouts/theme";
 import { ThemeProvider, CssBaseline, createTheme } from "@mui/material";
 
-export default function Base({ auth, children }) {
+export default function Base({ auth, drawerItems, children }) {
   const [mode, setMode] = useState("light");
 
   const theme = useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
@@ -14,7 +14,12 @@ export default function Base({ auth, children }) {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Nav auth={auth} theme={theme} toggleTheme={toggleTheme} />
+      <Nav
+        auth={auth}
+        theme={theme}
+        drawerItems={drawerItems}
+        toggleTheme={toggleTheme}
+      />
       <main>{children}</main>
     </ThemeProvider>
   );

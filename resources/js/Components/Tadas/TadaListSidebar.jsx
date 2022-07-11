@@ -1,13 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import React from "react";
-import AddButton from "@/Components/AddButton";
-import TadaListItem from "@/Components/Tadas/TadaListItem";
+import TadaListItems from "@/Components/Tadas/TadaListItems";
 import { css } from "@emotion/react";
-import { useTheme, List } from "@mui/material";
 
-export default function TadaListSidebar() {
-  const theme = useTheme();
-
+export default function TadaListSidebar({ items }) {
   return (
     <section
       css={css`
@@ -16,12 +12,7 @@ export default function TadaListSidebar() {
         overflow-y: auto;
       `}
     >
-      <List>
-        {[1].map((v, i) => (
-          <TadaListItem key={i} selected={true} />
-        ))}
-        <AddButton />
-      </List>
+      <TadaListItems items={items} />
     </section>
   );
 }

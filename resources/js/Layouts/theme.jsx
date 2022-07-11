@@ -20,7 +20,10 @@ export const getDesignTokens = (mode) =>
         styleOverrides: {
           root: {
             "&:hover": {
-              backgroundColor: mode === "light" ? grey[300] : grey[900],
+              backgroundColor:
+                mode === "light"
+                  ? "rgba(0,0,0,0.08)"
+                  : "rgba(255,255,255,0.08)",
             },
           },
         },
