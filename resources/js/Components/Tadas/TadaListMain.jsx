@@ -7,7 +7,7 @@ import AddButton from "@/Components/AddButton";
 
 const tadaWidth = "500px";
 
-export default function TadaListMain() {
+export default function TadaListMain({ tadaListName, tadas }) {
   const theme = useTheme();
 
   return (
@@ -31,16 +31,18 @@ export default function TadaListMain() {
       `}
     >
       <Container>
-        <Typography
-          variant="h1"
-          css={css`
-            margin-bottom: 30px;
-          `}
-        >
-          My Tada List
-        </Typography>
+        {tadaListName && (
+          <Typography
+            variant="h1"
+            css={css`
+              margin-bottom: 30px;
+            `}
+          >
+            {tadaListName}
+          </Typography>
+        )}
         <Stack spacing={3}>
-          {[1].map((v, i) => (
+          {tadas.map((v, i) => (
             <Tada
               css={css`
                 max-width: ${tadaWidth};

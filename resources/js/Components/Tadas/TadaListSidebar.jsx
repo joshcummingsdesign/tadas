@@ -3,7 +3,7 @@ import React from "react";
 import TadaListItems from "@/Components/Tadas/TadaListItems";
 import { css } from "@emotion/react";
 
-export default function TadaListSidebar({ items }) {
+export default function TadaListSidebar({ tadaLists }) {
   return (
     <section
       css={css`
@@ -12,7 +12,7 @@ export default function TadaListSidebar({ items }) {
         overflow-y: auto;
       `}
     >
-      <TadaListItems items={items} />
+      <TadaListItems items={tadaLists} />
     </section>
   );
 }

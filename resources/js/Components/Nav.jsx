@@ -64,7 +64,7 @@ export default function Nav({ auth, theme, toggleTheme, drawerItems }) {
               open={drawerIsOpen}
               onClose={closeDrawer}
             >
-              <TadaListItems items={drawerItems} />
+              {drawerItems()}
             </Drawer>
           </Fragment>
         )}
