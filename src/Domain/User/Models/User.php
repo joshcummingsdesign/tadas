@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace Domain\User\Models;
 
+use Domain\Tadas\Models\CurrentTadaList;
 use Domain\Tadas\Models\Tada;
 use Domain\Tadas\Models\TadaList;
 use Eloquent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -54,6 +56,13 @@ class User extends Authenticatable {
    */
   public function tadaLists(): HasMany {
     return $this->hasMany(TadaList::class);
+  }
+
+  /**
+   * Get the current tada list for a user.
+   */
+  public function currentTadaList(): HasOne {
+    return $this->hasOne(CurrentTadaList::class);
   }
 
   /**

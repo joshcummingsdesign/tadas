@@ -24,7 +24,7 @@ export default function Nav({ auth, theme, toggleTheme }) {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="relative">
       <Toolbar>
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           <Link

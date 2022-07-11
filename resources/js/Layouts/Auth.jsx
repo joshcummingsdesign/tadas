@@ -11,11 +11,16 @@ export default function Auth({ title, errors, status, children }) {
     <Base>
       <Head title={title} />
 
-      <Container>
+      <Container
+        css={css`
+          padding: 60px 0;
+        `}
+      >
         <Typography
           css={css`
-            margin: 60px 0;
+            margin-bottom: 60px;
             text-align: center;
+            font-size: 6rem;
           `}
           variant="h1"
         >

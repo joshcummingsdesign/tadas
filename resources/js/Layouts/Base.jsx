@@ -14,9 +14,7 @@ export default function Base({ auth, children }) {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <header>
-        <Nav auth={auth} theme={theme} toggleTheme={toggleTheme} />
-      </header>
+      <Nav auth={auth} theme={theme} toggleTheme={toggleTheme} />
       <main>{children}</main>
     </ThemeProvider>
   );
