@@ -2,18 +2,37 @@
 import React, { Fragment, useState } from "react";
 import { Link } from "@inertiajs/inertia-react";
 import { css } from "@emotion/react";
-import { AccountCircle, LightMode, DarkMode } from "@mui/icons-material";
 import {
+  AccountCircle,
+  LightMode,
+  DarkMode,
+  Menu as MenuIcon,
+} from "@mui/icons-material";
+import {
+  useMediaQuery,
   Menu,
   MenuItem,
   AppBar,
   Toolbar,
   Typography,
   IconButton,
+  Drawer,
+  Button,
 } from "@mui/material";
+import TadaListItems from "@/Components/Tadas/TadaListItems";
 
-export default function Nav({ auth, theme, toggleTheme }) {
+export default function Nav({ auth, theme, toggleTheme, drawerItems }) {
+  const [drawerIsOpen, setDrawerIsOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+
+  const toggleDrawer = () => {
+    setDrawerIsOpen((prevState) => !prevState);
+  };
+
+  const closeDrawer = () => {
+    setDrawerIsOpen(false);
+  };
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -24,8 +43,31 @@ export default function Nav({ auth, theme, toggleTheme }) {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="relative">
       <Toolbar>
+        {drawerItems && isMobile && (
+          <Fragment>
+            <Button
+              css={css`
+                padding: 5px;
+                margin-right: 10px;
+                min-width: 0;
+              `}
+              variant="secondary"
+              onClick={toggleDrawer}
+            >
+              <MenuIcon />
+            </Button>
+            <Drawer
+              PaperProps={{ sx: { width: 300 } }}
+              anchor="left"
+              open={drawerIsOpen}
+              onClose={closeDrawer}
+            >
+              {drawerItems()}
+            </Drawer>
+          </Fragment>
+        )}
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           <Link
             css={css`

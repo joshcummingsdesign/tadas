@@ -2,9 +2,12 @@
 
 declare(strict_types=1);
 
-use Domain\Tadas\Controllers\TadasController;
+use Domain\Tadas\Controllers\TadaListsController;
 
 Route::middleware('auth')->group(function () {
-  Route::resource('tadas', TadasController::class)
-    ->only(['index', 'store']);
+  Route::get('/tadas', [TadaListsController::class, 'index'])
+    ->name('tadaLists.index');
+  
+  Route::get('/tadas/{id}', [TadaListsController::class, 'show'])
+    ->name('tadaLists.show');
 });
