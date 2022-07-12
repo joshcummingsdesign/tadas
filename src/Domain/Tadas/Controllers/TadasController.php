@@ -7,7 +7,9 @@ namespace Domain\Tadas\Controllers;
 use App\Http\Controllers\Controller;
 use Domain\Tadas\Actions\CreateTadaAction;
 use Domain\Tadas\Actions\DeleteTadaAction;
+use Domain\Tadas\Actions\UpdateTadaAction;
 use Domain\Tadas\Requests\StoreTadaRequest;
+use Domain\Tadas\Requests\UpdateTadaRequest;
 use Domain\User\Actions\GetUserAction;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
@@ -21,6 +23,7 @@ class TadasController extends Controller {
   private GetUserAction $getUserAction;
   private CreateTadaAction $createTadaAction;
   private DeleteTadaAction $deleteTadaAction;
+  private UpdateTadaAction $updateTadaAction;
 
   /**
    * Create a new controller instance.
@@ -30,11 +33,13 @@ class TadasController extends Controller {
   public function __construct(
     GetUserAction $getUserAction,
     CreateTadaAction $createTadaAction,
-    DeleteTadaAction $deleteTadaAction
+    DeleteTadaAction $deleteTadaAction,
+    UpdateTadaAction $updateTadaAction
   ) {
     $this->getUserAction = $getUserAction;
     $this->createTadaAction = $createTadaAction;
     $this->deleteTadaAction = $deleteTadaAction;
+    $this->updateTadaAction = $updateTadaAction;
   }
 
   /**
@@ -53,15 +58,28 @@ class TadasController extends Controller {
   }
 
   /**
+   * Update the specified tada list.
+   *
+   * @unreleased
+   */
+  public function update(UpdateTadaRequest $request, int $id): RedirectResponse {
+    $validated = $request->validated();
+
+    $user = ($this->getUserAction)();
+
+    ($this->updateTadaAction)($user, $id, $validated);
+
+    return Redirect::back();
+  }
+
+  /**
    * Delete the specified tada.
    *
    * @unreleased
    */
   public function destroy(int $id): RedirectResponse {
     $user = ($this->getUserAction)();
-
     ($this->deleteTadaAction)($user, $id);
-
     return Redirect::back();
   }
 }

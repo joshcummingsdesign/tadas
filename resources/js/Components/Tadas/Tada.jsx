@@ -1,8 +1,8 @@
 /** @jsxImportSource @emotion/react */
-import React, { useState } from "react";
-import { Link } from "@inertiajs/inertia-react";
+import React, { useState, useEffect } from "react";
 import { MoreHoriz } from "@mui/icons-material";
 import { css } from "@emotion/react";
+import { Inertia } from "@inertiajs/inertia";
 import {
   Paper,
   ListItem,
@@ -14,7 +14,6 @@ import {
   Menu,
   MenuItem,
 } from "@mui/material";
-import { Inertia } from "@inertiajs/inertia";
 
 /**
  * Tada component.
@@ -22,16 +21,66 @@ import { Inertia } from "@inertiajs/inertia";
  * @unreleased
  */
 export default function Tada({ className, tada }) {
-  const theme = useTheme();
-
+  const [titleText, setTitleText] = useState("");
+  const [isCompleted, setIsCompleted] = useState(false);
+  const [isEditingTitle, setIsEditingTitle] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
 
-  const handleClose = (e) => {
+  const theme = useTheme();
+
+  useEffect(() => {
+    setTitleText(tada ? tada.name : "");
+    setIsCompleted(tada ? tada.is_completed : false);
+  }, [tada]);
+
+  const handleTitleChange = (e) => {
+    setTitleText(e.target.value);
+  };
+
+  const handleTitleFocus = () => {
+    setIsEditingTitle(true);
+  };
+
+  const handleCancel = () => {
+    setIsEditingTitle(false);
+    setTitleText(tada.name);
+  };
+
+  const handleTitleUpdate = () => {
+    const name = titleText || "Untitled Item";
+
+    setIsEditingTitle(false);
+    setTitleText(name);
+
+    Inertia.patch(route("tadas.update", tada.id), { name }, { replace: true });
+  };
+
+  const handelKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleTitleUpdate();
+    }
+
+    if (e.key === "Escape") {
+      handleCancel();
+    }
+  };
+
+  const handleToggleCheckbox = (e) => {
+    const is_completed = e.target.checked;
+    setIsCompleted(is_completed);
+    Inertia.patch(
+      route("tadas.update", tada.id),
+      { is_completed },
+      { replace: true }
+    );
+  };
+
+  const handleMenuClose = (e) => {
     e.stopPropagation();
     setAnchorEl(null);
   };
 
-  const onEdit = (e) => {
+  const handleMenuOpen = (e) => {
     e.stopPropagation();
     setAnchorEl(e.currentTarget);
   };
@@ -45,10 +94,39 @@ export default function Tada({ className, tada }) {
     <Paper className={className} elevation={3} sx={{ padding: "0.5rem" }}>
       <ListItem disablePadding={true}>
         <ListItemIcon>
-          <Checkbox />
+          <Checkbox onChange={handleToggleCheckbox} checked={isCompleted} />
         </ListItemIcon>
-        <ListItemText sx={{ fontWeight: "bold" }} primary={tada.name} />
-        <IconButton onClick={onEdit}>
+        {isEditingTitle ? (
+          <input
+            css={css`
+              width: 100%;
+              background: none;
+              border: none;
+              outline: none;
+              padding: 0;
+              font-family: ${theme.typography.body1.fontFamily};
+              letter-spacing: ${theme.typography.body1.letterSpacing};
+              line-height: ${theme.typography.body1.lineHeight};
+              font-size: ${theme.typography.body1.fontSize};
+              font-weight: ${theme.typography.body1.fontWeight};
+            `}
+            type="text"
+            autoFocus={true}
+            onBlur={handleTitleUpdate}
+            onKeyDown={handelKeyDown}
+            onChange={handleTitleChange}
+            value={titleText}
+          />
+        ) : (
+          <ListItemText
+            sx={{ fontWeight: "bold" }}
+            primary={titleText}
+            onClick={handleTitleFocus}
+            onFocus={handleTitleFocus}
+            tabIndex={0}
+          />
+        )}
+        <IconButton onClick={handleMenuOpen}>
           <MoreHoriz />
         </IconButton>
         <Menu
@@ -64,7 +142,7 @@ export default function Tada({ className, tada }) {
             horizontal: "right",
           }}
           open={Boolean(anchorEl)}
-          onClose={handleClose}
+          onClose={handleMenuClose}
         >
           <MenuItem
             css={css`

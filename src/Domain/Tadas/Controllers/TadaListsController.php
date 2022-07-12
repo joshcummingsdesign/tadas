@@ -12,6 +12,7 @@ use Domain\Tadas\Actions\GetTadaListAction;
 use Domain\Tadas\Actions\GetTadaListsAction;
 use Domain\Tadas\Actions\GetTadasAction;
 use Domain\Tadas\Actions\SetCurrentTadaListAction;
+use Domain\Tadas\Actions\UpdateTadaListAction;
 use Domain\Tadas\Requests\StoreTadaListRequest;
 use Domain\User\Actions\GetUserAction;
 use Illuminate\Http\RedirectResponse;
@@ -33,6 +34,7 @@ class TadaListsController extends Controller {
   private CreateTadaListAction $createTadaListAction;
   private SetCurrentTadaListAction $setCurrentTadaListAction;
   private DeleteTadaListAction $deleteTadaListAction;
+  private UpdateTadaListAction $updateTadaListAction;
 
   /**
    * Create a new controller instance.
@@ -48,6 +50,7 @@ class TadaListsController extends Controller {
     CreateTadaListAction $createTadaListAction,
     SetCurrentTadaListAction $setCurrentTadaListAction,
     DeleteTadaListAction $deleteTadaListAction,
+    UpdateTadaListAction $updateTadaListAction
   ) {
     $this->getUserAction = $getUserAction;
     $this->getCurrentTadaListAction = $getCurrentTadaListAction;
@@ -57,6 +60,7 @@ class TadaListsController extends Controller {
     $this->createTadaListAction = $createTadaListAction;
     $this->setCurrentTadaListAction = $setCurrentTadaListAction;
     $this->deleteTadaListAction = $deleteTadaListAction;
+    $this->updateTadaListAction = $updateTadaListAction;
   }
 
   /**
@@ -120,6 +124,20 @@ class TadaListsController extends Controller {
       'tadaList' => $tadaList,
       'tadas' => $tadas,
     ]);
+  }
+
+  /**
+   * Update the specified tada list.
+   *
+   * @unreleased
+   */
+  public function update(StoreTadaListRequest $request, int $id): RedirectResponse {
+    $validated = $request->validated();
+
+    $user = ($this->getUserAction)();
+    ($this->updateTadaListAction)($user, $id, ['name' => $validated['name']]);
+
+    return Redirect::back();
   }
 
   /**

@@ -18,6 +18,7 @@ class CreateTadaListAction {
    * @unreleased
    */
   public function __invoke(int $userId, string $name): TadaList {
+    // @todo make DTO
     return TadaList::create([
       'user_id' => $userId,
       'name' => $name,

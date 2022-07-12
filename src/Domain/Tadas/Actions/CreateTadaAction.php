@@ -23,6 +23,7 @@ class CreateTadaAction {
       abort(500);
     }
 
+    // @todo make DTO
     return Tada::create([
       'user_id' => $user->id,
       'tada_list_id' => $tadaListId,
