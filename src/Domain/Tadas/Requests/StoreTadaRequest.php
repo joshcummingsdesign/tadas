@@ -4,7 +4,7 @@ namespace Domain\Tadas\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreTadaListRequest extends FormRequest {
+class StoreTadaRequest extends FormRequest {
   /**
    * Determine if the user is authorized to make this request.
    */

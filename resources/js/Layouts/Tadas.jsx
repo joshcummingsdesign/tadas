@@ -8,20 +8,27 @@ import { css } from "@emotion/react";
 import { useMediaQuery, useTheme } from "@mui/material";
 import TadaListItems from "@/Components/Tadas/TadaListItems";
 
-export default function Tadas({ auth, tadaLists, tadas }) {
+export default function Tadas({ auth, listId, tadaLists, tadaList, tadas }) {
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
 
   return (
-    <Base auth={auth} drawerItems={() => <TadaListItems items={tadaLists} />}>
-      <Head title="Tadas" />
+    <Base
+      auth={auth}
+      drawerItems={() => (
+        <TadaListItems listId={listId} tadaLists={tadaLists || []} />
+      )}
+    >
+      <Head title={tadaList ? tadaList.name : "Tadas"} />
       <div
         css={css`
           display: flex;
         `}
       >
-        {isDesktop && <TadaListSidebar tadaLists={tadaLists} />}
-        <TadaListMain tadaListName="My Tada List" tadas={tadas} />
+        {isDesktop && (
+          <TadaListSidebar listId={listId} tadaLists={tadaLists || []} />
+        )}
+        <TadaListMain tadaList={tadaList} tadas={tadas || []} />
       </div>
     </Base>
   );

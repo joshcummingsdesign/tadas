@@ -19,7 +19,6 @@ import {
   Drawer,
   Button,
 } from "@mui/material";
-import TadaListItems from "@/Components/Tadas/TadaListItems";
 
 export default function Nav({ auth, theme, toggleTheme, drawerItems }) {
   const [drawerIsOpen, setDrawerIsOpen] = useState(false);

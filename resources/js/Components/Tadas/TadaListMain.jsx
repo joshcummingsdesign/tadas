@@ -1,14 +1,25 @@
 /** @jsxImportSource @emotion/react */
-import React from "react";
+import React, { Fragment } from "react";
 import Tada from "@/Components/Tadas/Tada";
 import { css } from "@emotion/react";
 import { useTheme, Container, Typography, Stack } from "@mui/material";
 import AddButton from "@/Components/AddButton";
+import { Inertia } from "@inertiajs/inertia";
 
 const tadaWidth = "500px";
 
-export default function TadaListMain({ tadaListName, tadas }) {
+export default function TadaListMain({ tadaList, tadas }) {
   const theme = useTheme();
+
+  const addTada = (id) => {
+    Inertia.post(
+      route("tadas.store", id),
+      {
+        name: "Untitled Tada",
+      },
+      { replace: true }
+    );
+  };
 
   return (
     <section
@@ -31,32 +42,36 @@ export default function TadaListMain({ tadaListName, tadas }) {
       `}
     >
       <Container>
-        {tadaListName && (
-          <Typography
-            variant="h1"
-            css={css`
-              margin-bottom: 30px;
-            `}
-          >
-            {tadaListName}
-          </Typography>
-        )}
-        <Stack spacing={3}>
-          {tadas.map((v, i) => (
-            <Tada
+        {tadaList && (
+          <Fragment>
+            <Typography
+              variant="h1"
               css={css`
-                max-width: ${tadaWidth};
+                margin-bottom: 30px;
               `}
-              key={i}
-            />
-          ))}
-          <AddButton
-            css={css`
-              max-width: ${tadaWidth};
-            `}
-            disablePadding={true}
-          />
-        </Stack>
+            >
+              {tadaList.name}
+            </Typography>
+            <Stack spacing={3}>
+              {tadas.map((tada) => (
+                <Tada
+                  css={css`
+                    max-width: ${tadaWidth};
+                  `}
+                  key={tada.id}
+                  tada={tada}
+                />
+              ))}
+              <AddButton
+                css={css`
+                  max-width: ${tadaWidth};
+                `}
+                onClick={() => addTada(tadaList.id)}
+                disablePadding={true}
+              />
+            </Stack>
+          </Fragment>
+        )}
       </Container>
     </section>
   );

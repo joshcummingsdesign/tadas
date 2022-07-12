@@ -1,7 +1,7 @@
 name: tadas
 recipe: laravel
 config:
-  php: "8.1"
+  php: "8.0"
   composer_version: "2.3.9"
   via: apache:2.4
   webroot: public
