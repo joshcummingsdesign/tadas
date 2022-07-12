@@ -6,9 +6,16 @@ namespace Domain\Auth\ServiceProviders;
 
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
+/**
+ * Auth service provider.
+ *
+ * @unreleased
+ */
 class AuthServiceProvider extends ServiceProvider {
   /**
    * The model to policy mappings for the application.
+   *
+   * @unreleased
    *
    * @var array<class-string, class-string>
    */
@@ -16,6 +23,8 @@ class AuthServiceProvider extends ServiceProvider {
 
   /**
    * Register any authentication / authorization services.
+   *
+   * @unreleased
    */
   public function boot(): void {
     $this->registerPolicies();

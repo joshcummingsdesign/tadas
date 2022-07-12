@@ -20,6 +20,11 @@ import {
   Button,
 } from "@mui/material";
 
+/**
+ * Nav component.
+ *
+ * @unreleased
+ */
 export default function Nav({ auth, theme, toggleTheme, drawerItems }) {
   const [drawerIsOpen, setDrawerIsOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);

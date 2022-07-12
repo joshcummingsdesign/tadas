@@ -8,9 +8,18 @@ use Illuminate\Http\Request;
 use Inertia\Middleware;
 use Tightenco\Ziggy\Ziggy;
 
+/**
+ * Inertia request handler middleware.
+ *
+ * @unreleased
+ *
+ * @var string
+ */
 class HandleInertiaRequests extends Middleware {
   /**
    * The root template that is loaded on the first page visit.
+   *
+   * @unreleased
    *
    * @var string
    */
@@ -18,6 +27,8 @@ class HandleInertiaRequests extends Middleware {
 
   /**
    * Determine the current asset version.
+   *
+   * @unreleased
    */
   public function version(Request $request): ?string {
     return parent::version($request);
@@ -25,6 +36,8 @@ class HandleInertiaRequests extends Middleware {
 
   /**
    * Define the props that are shared by default.
+   *
+   * @unreleased
    */
   public function share(Request $request): array {
     return array_merge(parent::share($request), [

@@ -10,11 +10,18 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
 
+/**
+ * Route service provider.
+ *
+ * @unreleased
+ */
 class RouteServiceProvider extends ServiceProvider {
   /**
    * The path to the "home" route for your application.
    *
    * Typically, users are redirected here after authentication.
+   *
+   * @unreleased
    *
    * @var string
    */
@@ -22,6 +29,8 @@ class RouteServiceProvider extends ServiceProvider {
 
   /**
    * Define your route model bindings, pattern filters, and other route configuration.
+   *
+   * @unreleased
    */
   public function boot(): void {
     $this->configureRateLimiting();
@@ -38,6 +47,8 @@ class RouteServiceProvider extends ServiceProvider {
 
   /**
    * Configure the rate limiters for the application.
+   *
+   * @unreleased
    */
   protected function configureRateLimiting(): void {
     RateLimiter::for('api', function (Request $request) {

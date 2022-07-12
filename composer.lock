@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "857f04bbb0fc2e04ba9edfe655659f63",
+    "content-hash": "f47cc50910fa14ff91c2a8a11c016b04",
     "packages": [
         {
             "name": "brick/math",
@@ -5920,6 +5920,34 @@
             "time": "2020-07-09T08:09:16+00:00"
         },
         {
+            "name": "kjohnson/since-unreleased",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kjohnson/since-unreleased.git",
+                "reference": "31c93bb0eb65d1d0b404ce081bf4c56e48fcb42f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kjohnson/since-unreleased/zipball/31c93bb0eb65d1d0b404ce081bf4c56e48fcb42f",
+                "reference": "31c93bb0eb65d1d0b404ce081bf4c56e48fcb42f",
+                "shasum": ""
+            },
+            "bin": [
+                "bin/since-unreleased.sh"
+            ],
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "support": {
+                "issues": "https://github.com/kjohnson/since-unreleased/issues",
+                "source": "https://github.com/kjohnson/since-unreleased/tree/1.0.0"
+            },
+            "time": "2021-03-26T15:00:24+00:00"
+        },
+        {
             "name": "laravel/breeze",
             "version": "v1.10.0",
             "source": {
@@ -7120,12 +7148,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "bc4d989050885c9c2138e0da74519efaad597076"
+                "reference": "2a1896038681217c0ee6363cb472aad856396eea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/bc4d989050885c9c2138e0da74519efaad597076",
-                "reference": "bc4d989050885c9c2138e0da74519efaad597076",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/2a1896038681217c0ee6363cb472aad856396eea",
+                "reference": "2a1896038681217c0ee6363cb472aad856396eea",
                 "shasum": ""
             },
             "conflict": {
@@ -7284,6 +7312,7 @@
                 "illuminate/view": "<6.20.42|>=7,<7.30.6|>=8,<8.75",
                 "impresscms/impresscms": "<=1.4.3",
                 "in2code/femanager": "<5.5.1|>=6,<6.3.1",
+                "in2code/lux": "<17.6.1|>=18,<24.0.2",
                 "intelliants/subrion": "<=4.2.1",
                 "ivankristianto/phpwhois": "<=4.3",
                 "jackalope/jackalope-doctrine-dbal": "<1.7.4",
@@ -7618,7 +7647,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-07-06T08:13:54+00:00"
+            "time": "2022-07-12T11:07:36+00:00"
         },
         {
             "name": "sebastian/cli-parser",

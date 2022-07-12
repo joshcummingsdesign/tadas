@@ -14,6 +14,11 @@ import {
   MenuItem,
 } from "@mui/material";
 
+/**
+ * TadaListItem component.
+ *
+ * @unreleased
+ */
 export default function TadaListItem({ tadaList, selected }) {
   const theme = useTheme();
 

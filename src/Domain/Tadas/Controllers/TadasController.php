@@ -12,11 +12,21 @@ use Domain\User\Actions\GetUserAction;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
 
+/**
+ * Tadas controller.
+ *
+ * @unreleased
+ */
 class TadasController extends Controller {
   private GetUserAction $getUserAction;
   private CreateTadaAction $createTadaAction;
   private DeleteTadaAction $deleteTadaAction;
 
+  /**
+   * Create a new controller instance.
+   *
+   * @unreleased
+   */
   public function __construct(
     GetUserAction $getUserAction,
     CreateTadaAction $createTadaAction,
@@ -29,6 +39,8 @@ class TadasController extends Controller {
 
   /**
    * Store a tada.
+   *
+   * @unreleased
    */
   public function store(StoreTadaRequest $request, int $id): RedirectResponse {
     $validated = $request->validated();
@@ -42,6 +54,8 @@ class TadasController extends Controller {
 
   /**
    * Delete the specified tada.
+   *
+   * @unreleased
    */
   public function destroy(int $id): RedirectResponse {
     $user = ($this->getUserAction)();

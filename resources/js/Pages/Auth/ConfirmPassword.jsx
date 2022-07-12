@@ -5,6 +5,11 @@ import { useForm } from "@inertiajs/inertia-react";
 import { TextField, Typography, Button } from "@mui/material";
 import { css } from "@emotion/react";
 
+/**
+ * ConfirmPassword page.
+ *
+ * @unreleased
+ */
 export default function ConfirmPassword() {
   const { data, setData, post, processing, errors, reset } = useForm({
     password: "",

@@ -7,9 +7,16 @@ namespace App\Http\Middleware;
 use Illuminate\Http\Middleware\TrustProxies as Middleware;
 use Illuminate\Http\Request;
 
+/**
+ * Trust proxies middleware.
+ *
+ * @unreleased
+ */
 class TrustProxies extends Middleware {
   /**
    * The trusted proxies for this application.
+   *
+   * @unreleased
    *
    * @var array<int, string>|string|null
    */
@@ -17,6 +24,8 @@ class TrustProxies extends Middleware {
 
   /**
    * The headers that should be used to detect proxies.
+   *
+   * @unreleased
    *
    * @var int
    */

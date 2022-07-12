@@ -10,6 +10,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
+ * TadaList model.
+ *
+ * @unreleased
+ *
  * @mixin Eloquent
  */
 class TadaList extends Model {
@@ -17,6 +21,8 @@ class TadaList extends Model {
 
   /**
    * The attributes that are mass assignable.
+   *
+   * @unreleased
    *
    * @var array<int, string>
    */
@@ -27,6 +33,8 @@ class TadaList extends Model {
 
   /**
    * Get the user a tada list belongs to.
+   *
+   * @unreleased
    */
   public function user(): BelongsTo {
     return $this->belongsTo(User::class);
@@ -34,6 +42,8 @@ class TadaList extends Model {
 
   /**
    * Get the tadas for a tada list.
+   *
+   * @unreleased
    */
   public function tadas(): HasMany {
     return $this->hasMany(Tada::class);

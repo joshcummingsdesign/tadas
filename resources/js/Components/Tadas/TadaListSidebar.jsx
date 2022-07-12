@@ -3,6 +3,11 @@ import React from "react";
 import TadaListItems from "@/Components/Tadas/TadaListItems";
 import { css } from "@emotion/react";
 
+/**
+ * TadaListSidebar component.
+ *
+ * @unreleased
+ */
 export default function TadaListSidebar({ listId, tadaLists }) {
   return (
     <section

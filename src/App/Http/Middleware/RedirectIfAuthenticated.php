@@ -6,16 +6,21 @@ namespace App\Http\Middleware;
 
 use App\ServiceProviders\RouteServiceProvider;
 use Closure;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * Auth redirect middleware.
+ *
+ * @unreleased
+ */
 class RedirectIfAuthenticated {
   /**
    * Handle an incoming request.
    *
-   * @param  string|null  ...$guards
+   * @unreleased
+   *
+   * @param string|null ...$guards
    *
    * @return mixed
    */

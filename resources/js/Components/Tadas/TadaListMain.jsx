@@ -6,8 +6,18 @@ import { useTheme, Container, Typography, Stack } from "@mui/material";
 import AddButton from "@/Components/AddButton";
 import { Inertia } from "@inertiajs/inertia";
 
-const tadaWidth = "500px";
+/**
+ * The max width of the tada items.
+ *
+ * @unreleased
+ */
+const tadaMaxWidth = "500px";
 
+/**
+ * TadaListMain component.
+ *
+ * @unreleased
+ */
 export default function TadaListMain({ tadaList, tadas }) {
   const theme = useTheme();
 
@@ -56,7 +66,7 @@ export default function TadaListMain({ tadaList, tadas }) {
               {tadas.map((tada) => (
                 <Tada
                   css={css`
-                    max-width: ${tadaWidth};
+                    max-width: ${tadaMaxWidth};
                   `}
                   key={tada.id}
                   tada={tada}
@@ -64,7 +74,7 @@ export default function TadaListMain({ tadaList, tadas }) {
               ))}
               <AddButton
                 css={css`
-                  max-width: ${tadaWidth};
+                  max-width: ${tadaMaxWidth};
                 `}
                 onClick={() => addTada(tadaList.id)}
                 disablePadding={true}

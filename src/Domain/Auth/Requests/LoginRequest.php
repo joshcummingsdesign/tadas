@@ -11,9 +11,16 @@ use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 
+/**
+ * Login request.
+ *
+ * @unreleased
+ */
 class LoginRequest extends FormRequest {
   /**
    * Determine if the user is authorized to make this request.
+   *
+   * @unreleased
    */
   public function authorize(): bool {
     return true;
@@ -21,6 +28,8 @@ class LoginRequest extends FormRequest {
 
   /**
    * Get the validation rules that apply to the request.
+   *
+   * @unreleased
    */
   public function rules(): array {
     return [
@@ -31,6 +40,8 @@ class LoginRequest extends FormRequest {
 
   /**
    * Attempt to authenticate the request's credentials.
+   *
+   * @unreleased
    *
    * @throws ValidationException
    */
@@ -50,6 +61,8 @@ class LoginRequest extends FormRequest {
 
   /**
    * Ensure the login request is not rate limited.
+   *
+   * @unreleased
    *
    * @throws ValidationException
    */
@@ -72,6 +85,8 @@ class LoginRequest extends FormRequest {
 
   /**
    * Get the rate limiting throttle key for the request.
+   *
+   * @unreleased
    */
   public function throttleKey(): string {
     return Str::lower($this->input('email')).'|'.$this->ip();

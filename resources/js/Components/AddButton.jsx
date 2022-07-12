@@ -6,6 +6,11 @@ import {
   ListItemButton,
 } from "@mui/material";
 
+/**
+ * AddButton component.
+ *
+ * @unreleased
+ */
 export default function AddButton({ className, onClick, disablePadding }) {
   const theme = useTheme();
 

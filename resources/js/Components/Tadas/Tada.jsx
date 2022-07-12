@@ -16,6 +16,11 @@ import {
 } from "@mui/material";
 import { Inertia } from "@inertiajs/inertia";
 
+/**
+ * Tada component.
+ *
+ * @unreleased
+ */
 export default function Tada({ className, tada }) {
   const theme = useTheme();
 

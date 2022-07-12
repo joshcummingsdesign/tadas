@@ -6,9 +6,16 @@ namespace App\Http\Middleware;
 
 use Illuminate\Foundation\Http\Middleware\TrimStrings as Middleware;
 
+/**
+ * Trim string middleware.
+ *
+ * @unreleased
+ */
 class TrimStrings extends Middleware {
   /**
    * The names of the attributes that should not be trimmed.
+   *
+   * @unreleased
    *
    * @var array<int, string>
    */

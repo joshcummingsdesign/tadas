@@ -4,6 +4,11 @@ import TadaListItem from "@/Components/Tadas/TadaListItem";
 import { List } from "@mui/material";
 import { Inertia } from "@inertiajs/inertia";
 
+/**
+ * TadaListItems component.
+ *
+ * @unreleased
+ */
 export default function TadaListItems({ listId, tadaLists }) {
   const addTadaList = () => {
     Inertia.post(

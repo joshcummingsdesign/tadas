@@ -1,6 +1,11 @@
 import React from "react";
 import { Alert } from "@mui/material";
 
+/**
+ * ValidationErrors component.
+ *
+ * @unreleased
+ */
 export default function ValidationErrors({ className, errors }) {
   return (
     Object.keys(errors).length > 0 && (

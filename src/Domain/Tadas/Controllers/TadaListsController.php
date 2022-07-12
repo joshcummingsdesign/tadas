@@ -15,11 +15,15 @@ use Domain\Tadas\Actions\SetCurrentTadaListAction;
 use Domain\Tadas\Requests\StoreTadaListRequest;
 use Domain\User\Actions\GetUserAction;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Inertia\Response;
 
+/**
+ * Tada lists controller.
+ *
+ * @unreleased
+ */
 class TadaListsController extends Controller {
   private GetUserAction $getUserAction;
   private GetCurrentTadaListAction $getCurrentTadaListAction;
@@ -30,6 +34,11 @@ class TadaListsController extends Controller {
   private SetCurrentTadaListAction $setCurrentTadaListAction;
   private DeleteTadaListAction $deleteTadaListAction;
 
+  /**
+   * Create a new controller instance.
+   *
+   * @unreleased
+   */
   public function __construct(
     GetUserAction $getUserAction,
     GetCurrentTadaListAction $getCurrentTadaListAction,
@@ -52,8 +61,10 @@ class TadaListsController extends Controller {
 
   /**
    * Display all tada lists.
+   *
+   * @unreleased
    */
-  public function index(Request $request): Response|RedirectResponse {
+  public function index(): Response|RedirectResponse {
     $user = ($this->getUserAction)();
 
     $currentTadaList = ($this->getCurrentTadaListAction)($user);
@@ -71,6 +82,8 @@ class TadaListsController extends Controller {
 
   /**
    * Store a tada list.
+   *
+   * @unreleased
    */
   public function store(StoreTadaListRequest $request): RedirectResponse {
     $validated = $request->validated();
@@ -85,6 +98,8 @@ class TadaListsController extends Controller {
 
   /**
    * Display the specified tada list.
+   *
+   * @unreleased
    */
   public function show(int $id): Response|RedirectResponse {
     $user = ($this->getUserAction)();
@@ -109,11 +124,12 @@ class TadaListsController extends Controller {
 
   /**
    * Delete the specified tada list.
+   *
+   * @unreleased
    */
   public function destroy(int $id): RedirectResponse {
     $user = ($this->getUserAction)();
     ($this->deleteTadaListAction)($user, $id);
-
     return Redirect::back();
   }
 }

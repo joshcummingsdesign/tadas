@@ -6,6 +6,11 @@ import { useForm } from "@inertiajs/inertia-react";
 import { TextField, Button, Typography } from "@mui/material";
 import { css } from "@emotion/react";
 
+/**
+ * Register page.
+ *
+ * @unreleased
+ */
 export default function Register() {
   const { data, setData, post, processing, errors, reset } = useForm({
     name: "",

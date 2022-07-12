@@ -6,6 +6,11 @@ import { Head } from "@inertiajs/inertia-react";
 import { css } from "@emotion/react";
 import { Alert, Container, Paper, Typography } from "@mui/material";
 
+/**
+ * Auth layout.
+ *
+ * @unreleased
+ */
 export default function Auth({ title, errors, status, children }) {
   return (
     <Base>

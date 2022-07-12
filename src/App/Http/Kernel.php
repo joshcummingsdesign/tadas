@@ -10,7 +10,6 @@ use App\Http\Middleware\HandleInertiaRequests;
 use App\Http\Middleware\PreventRequestsDuringMaintenance;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Middleware\TrimStrings;
-use App\Http\Middleware\TrustHosts;
 use App\Http\Middleware\TrustProxies;
 use App\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Auth\Middleware\AuthenticateWithBasicAuth;
@@ -29,13 +28,19 @@ use Illuminate\Routing\Middleware\ValidateSignature;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
-use Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful;
 
+/**
+ * The http kernel.
+ *
+ * @unreleased
+ */
 class Kernel extends HttpKernel {
   /**
    * The application's global HTTP middleware stack.
    *
-   * These middleware are run during every request to your application.
+   * Middleware run during every request to your application.
+   *
+   * @unreleased
    *
    * @var array<int, class-string|string>
    */
@@ -51,6 +56,8 @@ class Kernel extends HttpKernel {
 
   /**
    * The application's route middleware groups.
+   *
+   * @unreleased
    *
    * @var array<string, array<int, class-string|string>>
    */
@@ -75,7 +82,9 @@ class Kernel extends HttpKernel {
   /**
    * The application's route middleware.
    *
-   * These middleware may be assigned to groups or used individually.
+   * Middleware which may be assigned to groups or used individually.
+   *
+   * @unreleased
    *
    * @var array<string, class-string|string>
    */

@@ -6,6 +6,11 @@ import { Alert, Button, Typography } from "@mui/material";
 import { useForm } from "@inertiajs/inertia-react";
 import { css } from "@emotion/react";
 
+/**
+ * Verify email page.
+ *
+ * @unreleased
+ */
 export default function VerifyEmail({ status }) {
   const { post, processing } = useForm();
 
