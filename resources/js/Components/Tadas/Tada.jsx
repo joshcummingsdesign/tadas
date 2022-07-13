@@ -14,6 +14,7 @@ import {
   Menu,
   MenuItem,
 } from "@mui/material";
+import BareTextInput from "@/Components/Form/BareTextInput";
 
 /**
  * Tada component.
@@ -97,20 +98,11 @@ export default function Tada({ className, tada }) {
           <Checkbox onChange={handleToggleCheckbox} checked={isCompleted} />
         </ListItemIcon>
         {isEditingTitle ? (
-          <input
+          <BareTextInput
             css={css`
               width: 100%;
-              background: none;
-              border: none;
-              outline: none;
-              padding: 0;
-              font-family: ${theme.typography.body1.fontFamily};
-              letter-spacing: ${theme.typography.body1.letterSpacing};
-              line-height: ${theme.typography.body1.lineHeight};
-              font-size: ${theme.typography.body1.fontSize};
-              font-weight: ${theme.typography.body1.fontWeight};
             `}
-            type="text"
+            variant="body1"
             autoFocus={true}
             onBlur={handleTitleUpdate}
             onKeyDown={handelKeyDown}
