@@ -115,9 +115,9 @@ class TadaListsController extends Controller {
       return Redirect::route('tadaLists.index');
     }
 
-    ($this->setCurrentTadaListAction)($user->id, $tadaList->id);
     $tadaLists = ($this->getTadaListsAction)($user);
     $tadas = ($this->getTadasAction)($tadaList);
+    ($this->setCurrentTadaListAction)($user->id, $tadaList->id);
 
     return Inertia::render('Tadas/TadaList', [
       'listId' => $tadaList->id,
