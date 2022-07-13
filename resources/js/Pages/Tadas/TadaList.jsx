@@ -1,6 +1,27 @@
 import React from "react";
 import Tadas from "@/Layouts/Tadas";
 
-export default function TadaList({ auth }) {
-  return <Tadas auth={auth} tadaLists={[1]} tadas={[1]} />;
+/**
+ * TadaList page.
+ *
+ * @unreleased
+ */
+export default function TadaList({
+  auth,
+  errors,
+  listId,
+  tadaLists,
+  tadaList,
+  tadas,
+}) {
+  return (
+    <Tadas
+      auth={auth}
+      errors={errors}
+      listId={listId}
+      tadaLists={tadaLists}
+      tadaList={tadaList}
+      tadas={tadas}
+    />
+  );
 }

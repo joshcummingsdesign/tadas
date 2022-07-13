@@ -6,12 +6,24 @@ import {
   ListItemButton,
 } from "@mui/material";
 
-export default function AddButton({ className, disablePadding }) {
+/**
+ * AddButton component.
+ *
+ * @unreleased
+ */
+export default function AddButton({
+  className,
+  autoFocus,
+  onClick,
+  disablePadding,
+}) {
   const theme = useTheme();
 
   return (
     <ListItem className={className} disablePadding={disablePadding}>
       <ListItemButton
+        autoFocus={autoFocus}
+        onClick={onClick}
         sx={{
           textAlign: "center",
           border: "2px dotted",

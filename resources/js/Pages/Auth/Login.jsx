@@ -13,6 +13,11 @@ import {
   FormControlLabel,
 } from "@mui/material";
 
+/**
+ * Login page.
+ *
+ * @unreleased
+ */
 export default function Login({ status, canResetPassword }) {
   const { data, setData, post, processing, errors, reset } = useForm({
     email: "",

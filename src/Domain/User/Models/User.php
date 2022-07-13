@@ -16,6 +16,10 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
 /**
+ * The User model.
+ *
+ * @unreleased
+ *
  * @mixin Eloquent
  */
 class User extends Authenticatable {
@@ -23,6 +27,8 @@ class User extends Authenticatable {
 
   /**
    * The attributes that are mass assignable.
+   *
+   * @unreleased
    *
    * @var array<int, string>
    */
@@ -35,6 +41,8 @@ class User extends Authenticatable {
   /**
    * The attributes that should be hidden for serialization.
    *
+   * @unreleased
+   *
    * @var array<int, string>
    */
   protected $hidden = [
@@ -45,6 +53,8 @@ class User extends Authenticatable {
   /**
    * The attributes that should be cast.
    *
+   * @unreleased
+   *
    * @var array<string, string>
    */
   protected $casts = [
@@ -53,6 +63,8 @@ class User extends Authenticatable {
 
   /**
    * Get the tada lists for a user.
+   *
+   * @unreleased
    */
   public function tadaLists(): HasMany {
     return $this->hasMany(TadaList::class);
@@ -60,6 +72,8 @@ class User extends Authenticatable {
 
   /**
    * Get the current tada list for a user.
+   *
+   * @unreleased
    */
   public function currentTadaList(): HasOne {
     return $this->hasOne(CurrentTadaList::class);
@@ -67,6 +81,8 @@ class User extends Authenticatable {
 
   /**
    * Get the tadas for a user.
+   *
+   * @unreleased
    */
   public function tadas(): HasMany {
     return $this->hasMany(Tada::class);

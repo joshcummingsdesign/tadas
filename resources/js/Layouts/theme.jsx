@@ -1,7 +1,11 @@
 import { createTheme } from "@mui/material/styles";
-import { grey } from "@mui/material/colors";
 
-export const getDesignTokens = (mode) =>
+/**
+ * Get the theme object.
+ *
+ * @unreleased
+ */
+export const getThemeObject = (mode) =>
   createTheme({
     palette: {
       mode,

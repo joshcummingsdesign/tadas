@@ -9,6 +9,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
+ * Tada model.
+ *
+ * @unreleased
+ *
  * @mixin Eloquent
  */
 class Tada extends Model {
@@ -16,6 +20,8 @@ class Tada extends Model {
 
   /**
    * The model's attributes.
+   *
+   * @unreleased
    *
    * @var array
    */
@@ -25,6 +31,8 @@ class Tada extends Model {
 
   /**
    * The attributes that are mass assignable.
+   *
+   * @unreleased
    *
    * @var array<int, string>
    */
@@ -38,6 +46,8 @@ class Tada extends Model {
   /**
    * The attributes that should be cast.
    *
+   * @unreleased
+   *
    * @var array<string, string>
    */
   protected $casts = [
@@ -46,6 +56,8 @@ class Tada extends Model {
 
   /**
    * Get the user a tada belongs to.
+   *
+   * @unreleased
    */
   public function user(): BelongsTo {
     return $this->belongsTo(User::class);
@@ -53,6 +65,8 @@ class Tada extends Model {
 
   /**
    * Get the tada list a tada belongs to.
+   *
+   * @unreleased
    */
   public function tadaList(): BelongsTo {
     return $this->belongsTo(TadaList::class);

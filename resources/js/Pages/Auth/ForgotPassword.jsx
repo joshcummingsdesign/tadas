@@ -6,6 +6,11 @@ import { TextField, Button, Typography } from "@mui/material";
 import { css } from "@emotion/react";
 import Link from "@/Components/Link";
 
+/**
+ * ForgotPassword page.
+ *
+ * @unreleased
+ */
 export default function ForgotPassword({ status }) {
   const { data, setData, post, processing, errors } = useForm({
     email: "",

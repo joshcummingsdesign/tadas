@@ -4,6 +4,11 @@ import { Link } from "@inertiajs/inertia-react";
 import { css } from "@emotion/react";
 import { useTheme } from "@mui/material";
 
+/**
+ * Link component.
+ *
+ * @unreleased
+ */
 export default function StyledLink({ children, ...props }) {
   const theme = useTheme();
 

@@ -1,29 +1,39 @@
 {
-    "private": true,
-    "scripts": {
-        "dev": "vite",
-        "build": "vite build"
-    },
-    "devDependencies": {
-        "@headlessui/react": "^1.4.2",
-        "@inertiajs/inertia": "^0.11.0",
-        "@inertiajs/inertia-react": "^0.8.0",
-        "@inertiajs/progress": "^0.2.6",
-        "@vitejs/plugin-react": "^1.3.2",
-        "autoprefixer": "^10.4.2",
-        "axios": "^0.25",
-        "laravel-vite-plugin": "^0.2.1",
-        "lodash": "^4.17.19",
-        "postcss": "^8.4.6",
-        "prettier": "^2.7.1",
-        "react": "^17.0.2",
-        "react-dom": "^17.0.2",
-        "vite": "^2.9.11"
-    },
-    "dependencies": {
-        "@emotion/react": "^11.9.3",
-        "@emotion/styled": "^11.9.3",
-        "@mui/icons-material": "^5.8.4",
-        "@mui/material": "^5.8.7"
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "unreleased": "scripty"
+  },
+  "devDependencies": {
+    "@headlessui/react": "^1.4.2",
+    "@inertiajs/inertia": "^0.11.0",
+    "@inertiajs/inertia-react": "^0.8.0",
+    "@inertiajs/progress": "^0.2.6",
+    "@vitejs/plugin-react": "^1.3.2",
+    "autoprefixer": "^10.4.2",
+    "axios": "^0.25",
+    "husky": "^4.3.6",
+    "laravel-vite-plugin": "^0.2.1",
+    "lint-staged": "^10.5.3",
+    "lodash": "^4.17.19",
+    "postcss": "^8.4.6",
+    "prettier": "^2.7.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "scripty": "^2.1.0",
+    "vite": "^2.9.11"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.9.3",
+    "@emotion/styled": "^11.9.3",
+    "@mui/icons-material": "^5.8.4",
+    "@mui/material": "^5.8.7",
+    "notistack": "^2.0.5"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged -r"
     }
+  }
 }

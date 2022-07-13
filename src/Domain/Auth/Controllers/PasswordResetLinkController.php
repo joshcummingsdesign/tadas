@@ -12,9 +12,16 @@ use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
 use Inertia\Response;
 
+/**
+ * Password reset link controller.
+ *
+ * @unreleased
+ */
 class PasswordResetLinkController extends Controller {
   /**
    * Display the password reset link request view.
+   *
+   * @unreleased
    */
   public function create(): Response {
     return Inertia::render('Auth/ForgotPassword', [
@@ -24,6 +31,8 @@ class PasswordResetLinkController extends Controller {
 
   /**
    * Handle an incoming password reset link request.
+   *
+   * @unreleased
    *
    * @throws ValidationException
    */

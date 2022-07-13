@@ -6,6 +6,11 @@ import { TextField, Button, Typography } from "@mui/material";
 import { css } from "@emotion/react";
 import Link from "@/Components/Link";
 
+/**
+ * ResetPassword page.
+ *
+ * @unreleased
+ */
 export default function ResetPassword({ token, email }) {
   const { data, setData, post, processing, errors, reset } = useForm({
     token: token,

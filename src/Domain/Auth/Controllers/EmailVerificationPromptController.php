@@ -11,9 +11,16 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
 
+/**
+ * Email verification prompt controller.
+ *
+ * @unreleased
+ */
 class EmailVerificationPromptController extends Controller {
   /**
    * Display the email verification prompt.
+   *
+   * @unreleased
    */
   public function __invoke(Request $request): RedirectResponse|Response {
     return $request->user()->hasVerifiedEmail()

@@ -16,9 +16,16 @@ use Illuminate\Validation\Rules;
 use Inertia\Inertia;
 use Inertia\Response;
 
+/**
+ * Registerd user controller.
+ *
+ * @unreleased
+ */
 class RegisteredUserController extends Controller {
   /**
    * Display the registration view.
+   *
+   * @unreleased
    */
   public function create(): Response {
     return Inertia::render('Auth/Register');
@@ -26,6 +33,8 @@ class RegisteredUserController extends Controller {
 
   /**
    * Handle an incoming registration request.
+   *
+   * @unreleased
    */
   public function store(Request $request): RedirectResponse {
     $request->validate([
