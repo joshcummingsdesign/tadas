@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Tadas\Controllers;
 
+use App\Exceptions\UnprocessableEntityException;
 use App\Http\Controllers\Controller;
 use Domain\Tadas\Actions\CreateTadaListAction;
 use Domain\Tadas\Actions\DeleteTadaListAction;
@@ -13,9 +14,7 @@ use Domain\Tadas\Actions\GetTadaListsAction;
 use Domain\Tadas\Actions\GetTadasAction;
 use Domain\Tadas\Actions\SetCurrentTadaListAction;
 use Domain\Tadas\Actions\UpdateTadaListAction;
-use Domain\Tadas\DataTransferObjects\ShowTadaListData;
 use Domain\Tadas\DataTransferObjects\StoreTadaListData;
-use Domain\Tadas\DataTransferObjects\UpdateTadaListData;
 use Domain\Tadas\Requests\StoreTadaListRequest;
 use Domain\User\Actions\GetUserAction;
 use Illuminate\Http\RedirectResponse;
@@ -136,7 +135,12 @@ class TadaListsController extends Controller {
     $tadaListData = new StoreTadaListData(...$request->validated());
 
     $user = ($this->getUserAction)();
-    ($this->updateTadaListAction)($user, $id, $tadaListData);
+
+    try {
+      ($this->updateTadaListAction)($user, $id, $tadaListData);
+    } catch (UnprocessableEntityException $e) {
+      return Redirect::back()->withErrors($e->getPublicMessage());
+    }
 
     return Redirect::back();
   }
@@ -148,7 +152,12 @@ class TadaListsController extends Controller {
    */
   public function destroy(int $id): RedirectResponse {
     $user = ($this->getUserAction)();
-    ($this->deleteTadaListAction)($user, $id);
+
+    try {
+      ($this->deleteTadaListAction)($user, $id);
+    } catch (UnprocessableEntityException $e) {
+      return Redirect::back()->withErrors($e->getPublicMessage());
+    }
 
     return Redirect::back();
   }

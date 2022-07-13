@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Tadas\Controllers;
 
+use App\Exceptions\UnprocessableEntityException;
 use App\Http\Controllers\Controller;
 use Domain\Tadas\Actions\CreateTadaAction;
 use Domain\Tadas\Actions\DeleteTadaAction;
@@ -53,7 +54,12 @@ class TadasController extends Controller {
     $tadaData = new StoreTadaData(...$request->validated());
 
     $user = ($this->getUserAction)();
-    ($this->createTadaAction)($user, $tadaData);
+
+    try {
+      ($this->createTadaAction)($user, $tadaData);
+    } catch (UnprocessableEntityException $e) {
+      return Redirect::back()->withErrors($e->getPublicMessage());
+    }
 
     return Redirect::back();
   }
@@ -67,7 +73,12 @@ class TadasController extends Controller {
     $tadaData = new UpdateTadaData(...$request->validated());
 
     $user = ($this->getUserAction)();
-    ($this->updateTadaAction)($user, $id, $tadaData);
+
+    try {
+      ($this->updateTadaAction)($user, $id, $tadaData);
+    } catch (UnprocessableEntityException $e) {
+      return Redirect::back()->withErrors($e->getPublicMessage());
+    }
 
     return Redirect::back();
   }
@@ -79,7 +90,12 @@ class TadasController extends Controller {
    */
   public function destroy(int $id): RedirectResponse {
     $user = ($this->getUserAction)();
-    ($this->deleteTadaAction)($user, $id);
+
+    try {
+      ($this->deleteTadaAction)($user, $id);
+    } catch (UnprocessableEntityException $e) {
+      return Redirect::back()->withErrors($e->getPublicMessage());
+    }
 
     return Redirect::back();
   }

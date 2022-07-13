@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import React from "react";
 import Base from "@/Layouts/Base";
-import ValidationErrors from "@/Components/ValidationErrors";
+import FormErrors from "@/Components/Error/FormErrors";
 import { Head } from "@inertiajs/inertia-react";
 import { css } from "@emotion/react";
 import { Alert, Container, Paper, Typography } from "@mui/material";
@@ -54,7 +54,7 @@ export default function Auth({ title, errors, status, children }) {
           {children}
 
           {errors && (
-            <ValidationErrors
+            <FormErrors
               css={css`
                 margin-top: 30px;
               `}

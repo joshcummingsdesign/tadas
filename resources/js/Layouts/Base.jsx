@@ -2,6 +2,7 @@ import React, { useState, useMemo } from "react";
 import Nav from "@/Components/Nav";
 import { getThemeObject } from "@/Layouts/theme";
 import { ThemeProvider, CssBaseline, createTheme } from "@mui/material";
+import { SnackbarProvider } from "notistack";
 
 /**
  * Base layout.
@@ -18,14 +19,16 @@ export default function Base({ auth, drawerItems, children }) {
 
   return (
     <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Nav
-        auth={auth}
-        theme={theme}
-        drawerItems={drawerItems}
-        toggleTheme={toggleTheme}
-      />
-      <main>{children}</main>
+      <SnackbarProvider>
+        <CssBaseline />
+        <Nav
+          auth={auth}
+          theme={theme}
+          drawerItems={drawerItems}
+          toggleTheme={toggleTheme}
+        />
+        <main>{children}</main>
+      </SnackbarProvider>
     </ThemeProvider>
   );
 }

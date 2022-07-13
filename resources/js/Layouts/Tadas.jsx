@@ -7,13 +7,21 @@ import { Head } from "@inertiajs/inertia-react";
 import { css } from "@emotion/react";
 import { useMediaQuery, useTheme } from "@mui/material";
 import TadaListItems from "@/Components/Tadas/TadaListItems";
+import ErrorSnackbar from "@/Components/Error/ErrorSnackbar";
 
 /**
  * Tadas layout.
  *
  * @unreleased
  */
-export default function Tadas({ auth, listId, tadaLists, tadaList, tadas }) {
+export default function Tadas({
+  auth,
+  errors,
+  listId,
+  tadaLists,
+  tadaList,
+  tadas,
+}) {
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
 
@@ -25,6 +33,9 @@ export default function Tadas({ auth, listId, tadaLists, tadaList, tadas }) {
       )}
     >
       <Head title={tadaList ? tadaList.name : "Tadas"} />
+
+      <ErrorSnackbar errors={errors} />
+
       <div
         css={css`
           display: flex;

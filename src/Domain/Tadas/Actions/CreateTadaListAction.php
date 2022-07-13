@@ -19,9 +19,8 @@ class CreateTadaListAction {
    * @unreleased
    */
   public function __invoke(int $userId, StoreTadaListData $tadaListData): TadaList {
-    return TadaList::create([
+    return TadaList::create(array_merge([
       'user_id' => $userId,
-      'name' => $tadaListData->name,
-    ]);
+    ], (array) $tadaListData));
   }
 }

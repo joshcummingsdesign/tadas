@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Tadas\Actions;
 
+use App\Exceptions\UnprocessableEntityException;
 use Domain\Tadas\DataTransferObjects\StoreTadaListData;
 use Domain\User\Models\User;
 
@@ -17,12 +18,14 @@ class UpdateTadaListAction {
    * Invoke the action.
    *
    * @unreleased
+   *
+   * @throws UnprocessableEntityException
    */
   public function __invoke(User $user, int $id, StoreTadaListData $tadaListData): void {
     $tadaList = $user->tadaLists()->find($id);
 
     if (!$tadaList) {
-      abort(404);
+      throw new UnprocessableEntityException('Invalid TadaList id.');
     }
 
     $tadaList->update(array_filter((array) $tadaListData));

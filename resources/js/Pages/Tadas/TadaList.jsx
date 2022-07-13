@@ -1,6 +1,5 @@
-import React, { Fragment } from "react";
+import React from "react";
 import Tadas from "@/Layouts/Tadas";
-import ValidationErrors from "@/Components/ValidationErrors";
 
 /**
  * TadaList page.
@@ -16,15 +15,13 @@ export default function TadaList({
   tadas,
 }) {
   return (
-    <Fragment>
-      <ValidationErrors errors={errors} />
-      <Tadas
-        auth={auth}
-        listId={listId}
-        tadaLists={tadaLists}
-        tadaList={tadaList}
-        tadas={tadas}
-      />
-    </Fragment>
+    <Tadas
+      auth={auth}
+      errors={errors}
+      listId={listId}
+      tadaLists={tadaLists}
+      tadaList={tadaList}
+      tadas={tadas}
+    />
   );
 }

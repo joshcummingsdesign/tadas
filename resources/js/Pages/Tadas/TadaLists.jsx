@@ -6,6 +6,6 @@ import Tadas from "@/Layouts/Tadas";
  *
  * @unreleased
  */
-export default function TadaList({ auth, tadaLists }) {
-  return <Tadas auth={auth} tadaLists={tadaLists} />;
+export default function TadaList({ auth, errors, tadaLists }) {
+  return <Tadas auth={auth} errors={errors} tadaLists={tadaLists} />;
 }
