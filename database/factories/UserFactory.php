@@ -2,19 +2,27 @@
 
 namespace Database\Factories;
 
+use Domain\User\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\Domain\User\Models\User>
+ * @extends Factory<User>
  */
 class UserFactory extends Factory {
   /**
+   * The name of the factory's corresponding model.
+   *
+   * @unreleased
+   */
+  protected $model = User::class;
+
+  /**
    * Define the model's default state.
    *
-   * @return array<string, mixed>
+   * @unreleased
    */
-  public function definition() {
+  public function definition(): array {
     return [
       'name' => fake()->name(),
       'email' => fake()->safeEmail(),
@@ -27,9 +35,9 @@ class UserFactory extends Factory {
   /**
    * Indicate that the model's email address should be unverified.
    *
-   * @return static
+   * @unreleased
    */
-  public function unverified() {
+  public function unverified(): static {
     return $this->state(function (array $attributes) {
       return [
         'email_verified_at' => null,
