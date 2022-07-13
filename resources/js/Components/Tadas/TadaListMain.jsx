@@ -5,6 +5,7 @@ import { css } from "@emotion/react";
 import AddButton from "@/Components/AddButton";
 import { Inertia } from "@inertiajs/inertia";
 import { useTheme, Container, Typography, Stack } from "@mui/material";
+import BareTextInput from "@/Components/Form/BareTextInput";
 
 /**
  * The max width of the tada items.
@@ -98,20 +99,11 @@ export default function TadaListMain({ tadaList, tadas }) {
         {tadaList && (
           <Fragment>
             {isEditingTitle ? (
-              <input
+              <BareTextInput
                 css={css`
-                  background: none;
-                  border: none;
-                  outline: none;
-                  padding: 0;
-                  font-family: ${theme.typography.h1.fontFamily};
-                  letter-spacing: ${theme.typography.h1.letterSpacing};
-                  line-height: ${theme.typography.h1.lineHeight};
-                  font-size: ${theme.typography.h1.fontSize};
-                  font-weight: ${theme.typography.h1.fontWeight};
                   margin-bottom: 30px;
                 `}
-                type="text"
+                variant="h1"
                 autoFocus={true}
                 onBlur={handleTitleUpdate}
                 onKeyDown={handelKeyDown}

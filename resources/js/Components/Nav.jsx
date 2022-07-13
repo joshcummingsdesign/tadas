@@ -18,6 +18,7 @@ import {
   IconButton,
   Drawer,
   Button,
+  useTheme,
 } from "@mui/material";
 
 /**
@@ -25,9 +26,11 @@ import {
  *
  * @unreleased
  */
-export default function Nav({ auth, theme, toggleTheme, drawerItems }) {
+export default function Nav({ auth, toggleTheme, drawerItems }) {
   const [drawerIsOpen, setDrawerIsOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
+
+  const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
   const toggleDrawer = () => {
@@ -114,6 +117,7 @@ export default function Nav({ auth, theme, toggleTheme, drawerItems }) {
                 css={css`
                   background: none;
                   border: none;
+                  color: ${theme.palette.text.primary};
                 `}
                 method="post"
                 href={route("logout")}
