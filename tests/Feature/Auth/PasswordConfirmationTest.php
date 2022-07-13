@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Auth;
 
-use Domain\User\Models\User;
+use Database\Factories\UserFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -10,7 +10,7 @@ class PasswordConfirmationTest extends TestCase {
   use RefreshDatabase;
 
   public function testConfirmPasswordScreenCanBeRendered(): void {
-    $user = User::factory()->create();
+    $user = UserFactory::new()->create();
 
     $response = $this->actingAs($user)->get('/confirm-password');
 
@@ -18,7 +18,7 @@ class PasswordConfirmationTest extends TestCase {
   }
 
   public function testPasswordCanBeConfirmed(): void {
-    $user = User::factory()->create();
+    $user = UserFactory::new()->create();
 
     $response = $this->actingAs($user)->post('/confirm-password', [
       'password' => 'password',
@@ -29,7 +29,7 @@ class PasswordConfirmationTest extends TestCase {
   }
 
   public function testPasswordIsNotConfirmedWithInvalidPassword(): void {
-    $user = User::factory()->create();
+    $user = UserFactory::new()->create();
 
     $response = $this->actingAs($user)->post('/confirm-password', [
       'password' => 'wrong-password',

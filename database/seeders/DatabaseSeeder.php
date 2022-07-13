@@ -16,8 +16,5 @@ class DatabaseSeeder extends Seeder {
    * @unreleased
    */
   public function run(): void {
-    $this->call([
-      UserSeeder::class,
-    ]);
   }
 }

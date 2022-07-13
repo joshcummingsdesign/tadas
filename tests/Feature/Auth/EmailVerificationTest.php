@@ -3,7 +3,7 @@
 namespace Tests\Feature\Auth;
 
 use App\ServiceProviders\RouteServiceProvider;
-use Domain\User\Models\User;
+use Database\Factories\UserFactory;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Event;
@@ -14,9 +14,7 @@ class EmailVerificationTest extends TestCase {
   use RefreshDatabase;
 
   public function testEmailVerificationScreenCanBeRendered(): void {
-    $user = User::factory()->create([
-      'email_verified_at' => null,
-    ]);
+    $user = UserFactory::new()->unverified()->create();
 
     $response = $this->actingAs($user)->get('/verify-email');
 
@@ -24,9 +22,7 @@ class EmailVerificationTest extends TestCase {
   }
 
   public function testEmailCanBeVerified(): void {
-    $user = User::factory()->create([
-      'email_verified_at' => null,
-    ]);
+    $user = UserFactory::new()->unverified()->create();
 
     Event::fake();
 
@@ -44,9 +40,7 @@ class EmailVerificationTest extends TestCase {
   }
 
   public function testEmailIsNotVerifiedWithInvalidHash(): void {
-    $user = User::factory()->create([
-      'email_verified_at' => null,
-    ]);
+    $user = UserFactory::new()->unverified()->create();
 
     $verificationUrl = URL::temporarySignedRoute(
       'verification.verify',
