@@ -28,6 +28,8 @@ class UpdateTadaAction {
       throw new UnprocessableEntityException('Invalid Tada id.');
     }
 
-    $tada->update(array_filter((array) $tadaData));
+    $data = collect((array) $tadaData)->whereNotNull()->toArray();
+
+    $tada->update($data);
   }
 }
