@@ -11,31 +11,27 @@ Built with [Laravel](https://laravel.com/) and [Inertia](https://inertiajs.com/)
 
 ## Getting Started
 
-1.  Copy `.env.example` to `.env`
-
-        cp .env.example .env
-
-2.  Start the services
+1.  Start the services
 
         lando start
 
-3.  Install composer dependencies
+2.  Install composer dependencies
 
         lando composer install
 
-4.  Generate an app key
+3.  Generate `.env` files
 
-        lando php artisan key:generate
+        ./scripts/generate.sh
 
-5.  Run migrations
+4.  Run migrations
 
         lando php artisan migrate
 
-6.  Install npm dependencies
+5.  Install npm dependencies
 
         npm install
 
-7.  Start the dev server
+6.  Start the dev server
 
         npm run dev
 
