@@ -21,7 +21,7 @@ Route::middleware('auth')->group(function () {
   Route::delete('/tadas/{id}', [TadaListsController::class, 'destroy'])
     ->name('tadaLists.destroy');
 
-  Route::post('/tada/{id}', [TadasController::class, 'store'])
+  Route::post('/tada', [TadasController::class, 'store'])
     ->name('tadas.store');
 
   Route::patch('/tada/{id}', [TadasController::class, 'update'])

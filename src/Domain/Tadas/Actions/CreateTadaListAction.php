@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Tadas\Actions;
 
+use Domain\Tadas\DataTransferObjects\StoreTadaListData;
 use Domain\Tadas\Models\TadaList;
 
 /**
@@ -17,11 +18,10 @@ class CreateTadaListAction {
    *
    * @unreleased
    */
-  public function __invoke(int $userId, string $name): TadaList {
-    // @todo make DTO
+  public function __invoke(int $userId, StoreTadaListData $tadaListData): TadaList {
     return TadaList::create([
       'user_id' => $userId,
-      'name' => $name,
+      'name' => $tadaListData->name,
     ]);
   }
 }

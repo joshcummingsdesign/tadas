@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Tadas\Actions;
 
+use Domain\Tadas\DataTransferObjects\UpdateTadaData;
 use Domain\User\Models\User;
 
 /**
@@ -17,14 +18,13 @@ class UpdateTadaAction {
    *
    * @unreleased
    */
-  public function __invoke(User $user, int $id, array $attributes): void {
+  public function __invoke(User $user, int $id, UpdateTadaData $tadaData): void {
     $tada = $user->tadas()->find($id);
 
     if (!$tada) {
-      abort(404);
+      abort(500);
     }
 
-    // @todo make DTO
-    $tada->update($attributes);
+    $tada->update(array_filter((array) $tadaData));
   }
 }

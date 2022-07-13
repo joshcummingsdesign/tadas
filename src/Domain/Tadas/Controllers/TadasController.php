@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 use Domain\Tadas\Actions\CreateTadaAction;
 use Domain\Tadas\Actions\DeleteTadaAction;
 use Domain\Tadas\Actions\UpdateTadaAction;
+use Domain\Tadas\DataTransferObjects\StoreTadaData;
+use Domain\Tadas\DataTransferObjects\UpdateTadaData;
 use Domain\Tadas\Requests\StoreTadaRequest;
 use Domain\Tadas\Requests\UpdateTadaRequest;
 use Domain\User\Actions\GetUserAction;
@@ -47,12 +49,11 @@ class TadasController extends Controller {
    *
    * @unreleased
    */
-  public function store(StoreTadaRequest $request, int $id): RedirectResponse {
-    $validated = $request->validated();
+  public function store(StoreTadaRequest $request): RedirectResponse {
+    $tadaData = new StoreTadaData(...$request->validated());
 
     $user = ($this->getUserAction)();
-
-    ($this->createTadaAction)($user, $id, $validated['name']);
+    ($this->createTadaAction)($user, $tadaData);
 
     return Redirect::back();
   }
@@ -63,11 +64,10 @@ class TadasController extends Controller {
    * @unreleased
    */
   public function update(UpdateTadaRequest $request, int $id): RedirectResponse {
-    $validated = $request->validated();
+    $tadaData = new UpdateTadaData(...$request->validated());
 
     $user = ($this->getUserAction)();
-
-    ($this->updateTadaAction)($user, $id, $validated);
+    ($this->updateTadaAction)($user, $id, $tadaData);
 
     return Redirect::back();
   }
@@ -80,6 +80,7 @@ class TadasController extends Controller {
   public function destroy(int $id): RedirectResponse {
     $user = ($this->getUserAction)();
     ($this->deleteTadaAction)($user, $id);
+
     return Redirect::back();
   }
 }

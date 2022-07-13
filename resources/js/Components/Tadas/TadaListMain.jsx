@@ -27,11 +27,12 @@ export default function TadaListMain({ tadaList, tadas }) {
     setTitleText(tadaList ? tadaList.name : "");
   }, [tadaList]);
 
-  const addTada = (id) => {
+  const addTada = (tada_list_id) => {
     Inertia.post(
-      route("tadas.store", id),
+      route("tadas.store"),
       {
         name: "Untitled Tada",
+        tada_list_id,
       },
       { replace: true }
     );
@@ -146,6 +147,7 @@ export default function TadaListMain({ tadaList, tadas }) {
                 `}
                 onClick={() => addTada(tadaList.id)}
                 disablePadding={true}
+                autoFocus={true}
               />
             </Stack>
           </Fragment>

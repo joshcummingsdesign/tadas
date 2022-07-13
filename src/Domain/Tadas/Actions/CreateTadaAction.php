@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Tadas\Actions;
 
+use Domain\Tadas\DataTransferObjects\StoreTadaData;
 use Domain\Tadas\Models\Tada;
 use Domain\User\Models\User;
 
@@ -18,16 +19,13 @@ class CreateTadaAction {
    *
    * @unreleased
    */
-  public function __invoke(User $user, int $tadaListId, string $name): Tada {
-    if (!$user->tadaLists()->find($tadaListId)) {
+  public function __invoke(User $user, StoreTadaData $tadaData): Tada {
+    if (!$user->tadaLists()->find($tadaData->tada_list_id)) {
       abort(500);
     }
 
-    // @todo make DTO
-    return Tada::create([
+    return Tada::create(array_merge([
       'user_id' => $user->id,
-      'tada_list_id' => $tadaListId,
-      'name' => $name,
-    ]);
+    ], (array) $tadaData));
   }
 }

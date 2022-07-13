@@ -21,7 +21,7 @@ class DeleteTadaAction {
     $tada = $user->tadas()->find($id);
 
     if (!$tada) {
-      abort(404);
+      abort(500);
     }
 
     $tada->delete();

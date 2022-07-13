@@ -11,12 +11,18 @@ import {
  *
  * @unreleased
  */
-export default function AddButton({ className, onClick, disablePadding }) {
+export default function AddButton({
+  className,
+  autoFocus,
+  onClick,
+  disablePadding,
+}) {
   const theme = useTheme();
 
   return (
     <ListItem className={className} disablePadding={disablePadding}>
       <ListItemButton
+        autoFocus={autoFocus}
         onClick={onClick}
         sx={{
           textAlign: "center",

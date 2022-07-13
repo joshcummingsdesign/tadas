@@ -13,6 +13,9 @@ use Domain\Tadas\Actions\GetTadaListsAction;
 use Domain\Tadas\Actions\GetTadasAction;
 use Domain\Tadas\Actions\SetCurrentTadaListAction;
 use Domain\Tadas\Actions\UpdateTadaListAction;
+use Domain\Tadas\DataTransferObjects\ShowTadaListData;
+use Domain\Tadas\DataTransferObjects\StoreTadaListData;
+use Domain\Tadas\DataTransferObjects\UpdateTadaListData;
 use Domain\Tadas\Requests\StoreTadaListRequest;
 use Domain\User\Actions\GetUserAction;
 use Illuminate\Http\RedirectResponse;
@@ -90,11 +93,10 @@ class TadaListsController extends Controller {
    * @unreleased
    */
   public function store(StoreTadaListRequest $request): RedirectResponse {
-    $validated = $request->validated();
+    $tadaListData = new StoreTadaListData(...$request->validated());
 
     $userId = $request->user()->id;
-
-    $tadaList = ($this->createTadaListAction)($userId, $validated['name']);
+    $tadaList = ($this->createTadaListAction)($userId, $tadaListData);
     ($this->setCurrentTadaListAction)($userId, $tadaList->id);
 
     return Redirect::route('tadaLists.show', ['id' => $tadaList->id]);
@@ -114,12 +116,11 @@ class TadaListsController extends Controller {
     }
 
     ($this->setCurrentTadaListAction)($user->id, $tadaList->id);
-
     $tadaLists = ($this->getTadaListsAction)($user);
     $tadas = ($this->getTadasAction)($tadaList);
 
     return Inertia::render('Tadas/TadaList', [
-      'listId' => $id,
+      'listId' => $tadaList->id,
       'tadaLists' => $tadaLists,
       'tadaList' => $tadaList,
       'tadas' => $tadas,
@@ -132,10 +133,10 @@ class TadaListsController extends Controller {
    * @unreleased
    */
   public function update(StoreTadaListRequest $request, int $id): RedirectResponse {
-    $validated = $request->validated();
+    $tadaListData = new StoreTadaListData(...$request->validated());
 
     $user = ($this->getUserAction)();
-    ($this->updateTadaListAction)($user, $id, ['name' => $validated['name']]);
+    ($this->updateTadaListAction)($user, $id, $tadaListData);
 
     return Redirect::back();
   }
@@ -148,6 +149,7 @@ class TadaListsController extends Controller {
   public function destroy(int $id): RedirectResponse {
     $user = ($this->getUserAction)();
     ($this->deleteTadaListAction)($user, $id);
+
     return Redirect::back();
   }
 }
