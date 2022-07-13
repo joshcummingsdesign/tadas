@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 /**
- * Auth redirect middleware.
+ * Redirect if authenticated middleware.
  *
  * @unreleased
  */
@@ -20,7 +20,7 @@ class RedirectIfAuthenticated {
    *
    * @unreleased
    *
-   * @param string|null ...$guards
+   * @param string[]|null ...$guards
    *
    * @return mixed
    */
