@@ -18,6 +18,7 @@ export default function TadaList({
     <Tadas
       auth={auth}
       errors={errors}
+      isAddTadaFocused={true}
       listId={listId}
       tadaLists={tadaLists}
       tadaList={tadaList}

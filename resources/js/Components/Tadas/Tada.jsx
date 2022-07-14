@@ -1,8 +1,10 @@
 /** @jsxImportSource @emotion/react */
 import React, { useState, useEffect } from "react";
+import BareTextInput from "@/Components/Form/BareTextInput";
+import { Inertia } from "@inertiajs/inertia";
 import { MoreHoriz } from "@mui/icons-material";
 import { css } from "@emotion/react";
-import { Inertia } from "@inertiajs/inertia";
+import { strings } from "@/strings";
 import {
   Paper,
   ListItem,
@@ -14,20 +16,31 @@ import {
   Menu,
   MenuItem,
 } from "@mui/material";
-import BareTextInput from "@/Components/Form/BareTextInput";
 
 /**
  * Tada component.
  *
  * @since 1.0.0
  */
-export default function Tada({ className, tada }) {
+export default function Tada({
+  className,
+  editOnInit,
+  tada,
+  onTadaTitleBlur,
+  onTadaInputEnterKey,
+}) {
   const [titleText, setTitleText] = useState("");
   const [isCompleted, setIsCompleted] = useState(false);
   const [isEditingTitle, setIsEditingTitle] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
 
   const theme = useTheme();
+
+  useEffect(() => {
+    if (editOnInit) {
+      setIsEditingTitle(true);
+    }
+  }, [editOnInit]);
 
   useEffect(() => {
     setTitleText(tada ? tada.name : "");
@@ -42,13 +55,17 @@ export default function Tada({ className, tada }) {
     setIsEditingTitle(true);
   };
 
+  const handleTitleInputFocus = (e) => {
+    e.target.select();
+  };
+
   const handleCancel = () => {
     setIsEditingTitle(false);
     setTitleText(tada.name);
   };
 
   const handleTitleUpdate = () => {
-    const name = titleText || "Untitled Item";
+    const name = titleText || strings.defaultTadaTitle;
 
     setIsEditingTitle(false);
     setTitleText(name);
@@ -56,9 +73,15 @@ export default function Tada({ className, tada }) {
     Inertia.patch(route("tadas.update", tada.id), { name }, { replace: true });
   };
 
+  const handleBlur = () => {
+    onTadaTitleBlur();
+    handleTitleUpdate();
+  };
+
   const handelKeyDown = (e) => {
     if (e.key === "Enter") {
       handleTitleUpdate();
+      onTadaInputEnterKey();
     }
 
     if (e.key === "Escape") {
@@ -87,7 +110,7 @@ export default function Tada({ className, tada }) {
   };
 
   const onDelete = (e, id) => {
-    e.stopPropagation();
+    handleMenuClose(e);
     Inertia.delete(route("tadas.destroy", id), { replace: true });
   };
 
@@ -104,7 +127,8 @@ export default function Tada({ className, tada }) {
             `}
             variant="body1"
             autoFocus={true}
-            onBlur={handleTitleUpdate}
+            onFocus={handleTitleInputFocus}
+            onBlur={handleBlur}
             onKeyDown={handelKeyDown}
             onChange={handleTitleChange}
             value={titleText}
@@ -128,7 +152,6 @@ export default function Tada({ className, tada }) {
             vertical: "top",
             horizontal: "right",
           }}
-          keepMounted
           transformOrigin={{
             vertical: "top",
             horizontal: "right",

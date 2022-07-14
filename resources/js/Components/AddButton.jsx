@@ -13,7 +13,7 @@ import {
  */
 export default function AddButton({
   className,
-  autoFocus,
+  innerRef,
   onClick,
   disablePadding,
 }) {
@@ -22,7 +22,7 @@ export default function AddButton({
   return (
     <ListItem className={className} disablePadding={disablePadding}>
       <ListItemButton
-        autoFocus={autoFocus}
+        ref={innerRef}
         onClick={onClick}
         sx={{
           textAlign: "center",

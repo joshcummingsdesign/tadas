@@ -1,42 +1,62 @@
 /** @jsxImportSource @emotion/react */
-import React, { Fragment, useEffect, useState } from "react";
-import Tada from "@/Components/Tadas/Tada";
-import { css } from "@emotion/react";
+import React, { Fragment, useEffect, useRef, useState } from "react";
 import AddButton from "@/Components/AddButton";
-import { Inertia } from "@inertiajs/inertia";
-import { useTheme, Container, Typography, Stack } from "@mui/material";
 import BareTextInput from "@/Components/Form/BareTextInput";
-
-/**
- * The max width of the tada items.
- *
- * @since 1.0.0
- */
-const tadaMaxWidth = "500px";
+import Tada from "@/Components/Tadas/Tada";
+import { Inertia } from "@inertiajs/inertia";
+import { css } from "@emotion/react";
+import { useTheme, Typography, Stack } from "@mui/material";
+import { strings } from "@/strings";
 
 /**
  * TadaListMain component.
  *
  * @since 1.0.0
  */
-export default function TadaListMain({ tadaList, tadas }) {
+export default function TadaListMain({ isAddTadaFocused, tadaList, tadas }) {
   const [titleText, setTitleText] = useState("");
   const [isEditingTitle, setIsEditingTitle] = useState(false);
+
   const theme = useTheme();
+  const addButton = useRef(null);
+  const tadaListId = useRef(null);
+  const addButtonClicked = useRef(false);
 
   useEffect(() => {
-    setTitleText(tadaList ? tadaList.name : "");
-  }, [tadaList]);
+    if (isAddTadaFocused) {
+      addButton.current.focus();
+    }
+  }, [addButton]);
 
-  const addTada = (tada_list_id) => {
+  useEffect(() => {
+    // Set the title text
+    setTitleText(tadaList ? tadaList.name : "");
+
+    // Focus title if it is still the default
+    if (tadaList && tadaListId.current !== tadaList.id) {
+      tadaListId.current = tadaList.id;
+
+      if (tadaList.name === strings.defaultTadaListTitle) {
+        setIsEditingTitle(true);
+      }
+    }
+  }, [tadaList, tadaListId]);
+
+  const addTada = () => {
     Inertia.post(
       route("tadas.store"),
       {
-        name: "Untitled Tada",
-        tada_list_id,
+        name: strings.defaultTadaTitle,
+        tada_list_id: tadaList.id,
       },
       { replace: true }
     );
+
+    addButtonClicked.current = true;
+  };
+
+  const handleTitleInputFocus = (e) => {
+    e.target.select();
   };
 
   const handleTitleChange = (e) => {
@@ -53,7 +73,7 @@ export default function TadaListMain({ tadaList, tadas }) {
   };
 
   const handleTitleUpdate = () => {
-    const name = titleText || "Untitled List";
+    const name = titleText || strings.defaultTadaListTitle;
 
     setIsEditingTitle(false);
     setTitleText(name);
@@ -68,6 +88,7 @@ export default function TadaListMain({ tadaList, tadas }) {
   const handelKeyDown = (e) => {
     if (e.key === "Enter") {
       handleTitleUpdate();
+      addTada(tadaList.id);
     }
 
     if (e.key === "Escape") {
@@ -75,10 +96,17 @@ export default function TadaListMain({ tadaList, tadas }) {
     }
   };
 
+  const handleTadaTitleBlur = () => {
+    addButtonClicked.current = false;
+  };
+
+  const handleTadaInputEnterKey = () => {
+    addTada(tadaList.id);
+  };
+
   return (
     <section
       css={css`
-        padding: 24px 0;
         height: calc(100vh - 56px);
         width: 100%;
         overflow-y: auto;
@@ -95,7 +123,18 @@ export default function TadaListMain({ tadaList, tadas }) {
         }
       `}
     >
-      <Container>
+      <div
+        css={css`
+          padding: 30px;
+          margin: 0 auto;
+          max-width: 600px;
+
+          ${theme.breakpoints.up("xl")} {
+            width: 50%;
+            max-width: 800px;
+          }
+        `}
+      >
         {tadaList && (
           <Fragment>
             {isEditingTitle ? (
@@ -105,6 +144,7 @@ export default function TadaListMain({ tadaList, tadas }) {
                 `}
                 variant="h1"
                 autoFocus={true}
+                onFocus={handleTitleInputFocus}
                 onBlur={handleTitleUpdate}
                 onKeyDown={handelKeyDown}
                 onChange={handleTitleChange}
@@ -124,27 +164,27 @@ export default function TadaListMain({ tadaList, tadas }) {
               </Typography>
             )}
             <Stack spacing={3}>
-              {tadas.map((tada) => (
+              {tadas.map((tada, i) => (
                 <Tada
-                  css={css`
-                    max-width: ${tadaMaxWidth};
-                  `}
                   key={tada.id}
                   tada={tada}
+                  onTadaInputEnterKey={handleTadaInputEnterKey}
+                  editOnInit={
+                    addButtonClicked.current && i === tadas.length - 1
+                  }
+                  onTadaTitleBlur={handleTadaTitleBlur}
                 />
               ))}
               <AddButton
-                css={css`
-                  max-width: ${tadaMaxWidth};
-                `}
-                onClick={() => addTada(tadaList.id)}
+                innerRef={addButton}
+                onClick={addTada}
                 disablePadding={true}
                 autoFocus={true}
               />
             </Stack>
           </Fragment>
         )}
-      </Container>
+      </div>
     </section>
   );
 }

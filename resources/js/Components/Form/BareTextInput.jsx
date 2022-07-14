@@ -18,6 +18,7 @@ export default function BareTextInput({ className, variant, ...props }) {
         border: none;
         outline: none;
         padding: 0;
+        width: 100%;
         color: ${theme.palette.text.primary};
         font-family: ${theme.typography[variant].fontFamily};
         letter-spacing: ${theme.typography[variant].letterSpacing};
@@ -25,8 +26,8 @@ export default function BareTextInput({ className, variant, ...props }) {
         font-size: ${theme.typography[variant].fontSize};
         font-weight: ${theme.typography[variant].fontWeight};
       `}
-      className={className}
       type="text"
+      className={className}
       {...props}
     />
   );
