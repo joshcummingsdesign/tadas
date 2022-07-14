@@ -16,7 +16,7 @@ use Tests\TestCase;
 class TadaListsTest extends TestCase {
   use RefreshDatabase;
 
-  public function testHomeRedirectsToTadas(): void {
+  public function testShouldRedirectToTadas(): void {
     $user = UserFactory::new()->create();
 
     $this->actingAs($user)
@@ -24,7 +24,7 @@ class TadaListsTest extends TestCase {
       ->assertRedirect('/tadas');
   }
 
-  public function testCanRenderTadaLists(): void {
+  public function testShouldRenderTadaLists(): void {
     $user = UserFactory::new()->create();
     TadaListFactory::new()->withUserId($user->id)->create();
 
@@ -35,7 +35,7 @@ class TadaListsTest extends TestCase {
         ->where('tadaLists', $user->tadaLists()->get()));
   }
 
-  public function testCanCreateTadaList(): void {
+  public function testShouldCreateTadaList(): void {
     $user = UserFactory::new()->create();
     $tadaListData = StoreTadaListDataFactory::new()->create();
 
@@ -52,7 +52,7 @@ class TadaListsTest extends TestCase {
     $response->assertLocation('/tadas/' . $tadaList->id);
   }
 
-  public function testRedirectsToCurrentTadaList(): void {
+  public function testShouldRedirectToCurrentTadaList(): void {
     $user = UserFactory::new()->create();
     $tadaList = TadaListFactory::new()->withUserId($user->id)->create();
     CurrentTadaListFactory::new()
@@ -65,10 +65,10 @@ class TadaListsTest extends TestCase {
       ->assertRedirect('/tadas/' . $tadaList->id);
   }
 
-  public function testCanRenderTadaList(): void {
+  public function testShouldRenderTadaList(): void {
     $user = UserFactory::new()->create();
     $tadaList = TadaListFactory::new()->withUserId($user->id)->create();
-    TadaFactory::new() ->withUserId($user->id) ->withTadaListId($tadaList->id) ->create();
+    TadaFactory::new()->withUserId($user->id)->withTadaListId($tadaList->id)->create();
 
     $this->actingAs($user)->get('/tadas/' . $tadaList->id)
       ->assertStatus(200)
@@ -79,7 +79,7 @@ class TadaListsTest extends TestCase {
         ->where('tadas', $user->tadas()->get()));
   }
 
-  public function testRedirectWhenNoTadaFound(): void {
+  public function testShouldRedirectWhenNoTadaFound(): void {
     $user = UserFactory::new()->create();
 
     $this->actingAs($user)
@@ -87,7 +87,7 @@ class TadaListsTest extends TestCase {
       ->assertRedirect('/tadas');
   }
 
-  public function testCanUpdateTadaList(): void {
+  public function testShouldUpdateTadaList(): void {
     $user = UserFactory::new()->create();
     $tadaList = TadaListFactory::new()->withUserId($user->id)->create();
     $tadaListData = StoreTadaListDataFactory::new()->withName('New Name')->create();
@@ -104,7 +104,7 @@ class TadaListsTest extends TestCase {
     ]);
   }
 
-  public function testCanDeleteTadaList(): void {
+  public function testShouldDeleteTadaList(): void {
     $user = UserFactory::new()->create();
     $tadaList = TadaListFactory::new()->withUserId($user->id)->create();
 

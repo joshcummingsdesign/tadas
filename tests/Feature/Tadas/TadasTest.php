@@ -14,7 +14,7 @@ use Tests\TestCase;
 class TadasTest extends TestCase {
   use RefreshDatabase;
 
-  public function testCanCreateTada(): void {
+  public function testShouldCreateTada(): void {
     $user = UserFactory::new()->create();
     $tadaList = TadaListFactory::new()->withUserId($user->id)->create();
     $tadaData = StoreTadaDataFactory::new()->withTadaListId($tadaList->id)->create();
@@ -31,7 +31,7 @@ class TadasTest extends TestCase {
     $this->assertEquals($tadaData->tada_list_id, $tada->tada_list_id);
   }
 
-  public function testCanUpdateTada(): void {
+  public function testShouldUpdateTada(): void {
     $user = UserFactory::new()->create();
     $tadaList = TadaListFactory::new()->withUserId($user->id)->create();
     $tada = TadaFactory::new()->withUserId($user->id)->withTadaListId($tadaList->id)->create();
@@ -48,7 +48,7 @@ class TadasTest extends TestCase {
     $this->assertEquals($tadaData->name, $tada->refresh()->name);
   }
 
-  public function testCanDeleteTada(): void {
+  public function testShouldDeleteTada(): void {
     $user = UserFactory::new()->create();
     $tadaList = TadaListFactory::new()->withUserId($user->id)->create();
     $tada = TadaFactory::new()->withUserId($user->id)->withTadaListId($tadaList->id)->create();

@@ -10,13 +10,13 @@ use Tests\TestCase;
 class AuthenticationTest extends TestCase {
   use RefreshDatabase;
 
-  public function testLoginScreenCanBeRendered(): void {
+  public function testShouldRenderLoginScreen(): void {
     $response = $this->get('/login');
 
     $response->assertStatus(200);
   }
 
-  public function testUsersCanAuthenticateUsingTheLoginScreen(): void {
+  public function testShouldLogin(): void {
     $user = UserFactory::new()->create();
 
     $response = $this->post('/login', [
@@ -28,7 +28,7 @@ class AuthenticationTest extends TestCase {
     $response->assertRedirect(RouteServiceProvider::HOME);
   }
 
-  public function testUsersCanNotAuthenticateWithInvalidPassword(): void {
+  public function shouldPreventInvalidPassword(): void {
     $user = UserFactory::new()->create();
 
     $this->post('/login', [

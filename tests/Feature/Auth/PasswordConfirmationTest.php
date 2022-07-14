@@ -9,7 +9,7 @@ use Tests\TestCase;
 class PasswordConfirmationTest extends TestCase {
   use RefreshDatabase;
 
-  public function testConfirmPasswordScreenCanBeRendered(): void {
+  public function testShouldRenderConfirmPasswordScreen(): void {
     $user = UserFactory::new()->create();
 
     $response = $this->actingAs($user)->get('/confirm-password');
@@ -17,7 +17,7 @@ class PasswordConfirmationTest extends TestCase {
     $response->assertStatus(200);
   }
 
-  public function testPasswordCanBeConfirmed(): void {
+  public function testShouldConfirmPassword(): void {
     $user = UserFactory::new()->create();
 
     $response = $this->actingAs($user)->post('/confirm-password', [
@@ -28,7 +28,7 @@ class PasswordConfirmationTest extends TestCase {
     $response->assertSessionHasNoErrors();
   }
 
-  public function testPasswordIsNotConfirmedWithInvalidPassword(): void {
+  public function testShouldNotConfirmInvalidPassword(): void {
     $user = UserFactory::new()->create();
 
     $response = $this->actingAs($user)->post('/confirm-password', [

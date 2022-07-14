@@ -13,7 +13,7 @@ use Tests\TestCase;
 class EmailVerificationTest extends TestCase {
   use RefreshDatabase;
 
-  public function testEmailVerificationScreenCanBeRendered(): void {
+  public function testShouldRenderEmailVerificationScreen(): void {
     $user = UserFactory::new()->unverified()->create();
 
     $response = $this->actingAs($user)->get('/verify-email');
@@ -21,7 +21,7 @@ class EmailVerificationTest extends TestCase {
     $response->assertStatus(200);
   }
 
-  public function testEmailCanBeVerified(): void {
+  public function testShouldVerifyEmail(): void {
     $user = UserFactory::new()->unverified()->create();
 
     Event::fake();
@@ -39,7 +39,7 @@ class EmailVerificationTest extends TestCase {
     $response->assertRedirect(RouteServiceProvider::HOME . '?verified=1');
   }
 
-  public function testEmailIsNotVerifiedWithInvalidHash(): void {
+  public function testShouldPreventInvalidEmailVerificationHash(): void {
     $user = UserFactory::new()->unverified()->create();
 
     $verificationUrl = URL::temporarySignedRoute(
