@@ -28,6 +28,7 @@ class TadasTest extends TestCase {
     $tada = Tada::first();
 
     $this->assertEquals($tadaData->name, $tada->name);
+    $this->assertEquals($tadaData->tada_list_id, $tada->tada_list_id);
   }
 
   public function testCanUpdateTada(): void {
