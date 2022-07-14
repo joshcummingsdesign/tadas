@@ -1,15 +1,27 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import AddButton from "@/Components/AddButton";
 import TadaListItem from "@/Components/Tadas/TadaListItem";
-import { List } from "@mui/material";
 import { Inertia } from "@inertiajs/inertia";
+import { List } from "@mui/material";
 
 /**
  * TadaListItems component.
  *
  * @since 1.0.0
  */
-export default function TadaListItems({ listId, tadaLists }) {
+export default function TadaListItems({
+  isAddTadaListFocused,
+  listId,
+  tadaLists,
+}) {
+  const addButton = useRef(null);
+
+  useEffect(() => {
+    if (isAddTadaListFocused) {
+      addButton.current.focus();
+    }
+  }, [addButton, tadaLists]);
+
   const addTadaList = () => {
     Inertia.post(
       route("tadaLists.store"),
@@ -29,7 +41,7 @@ export default function TadaListItems({ listId, tadaLists }) {
           selected={tadaList.id === listId}
         />
       ))}
-      <AddButton onClick={addTadaList} />
+      <AddButton innerRef={addButton} onClick={addTadaList} />
     </List>
   );
 }

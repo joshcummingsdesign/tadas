@@ -8,7 +8,11 @@ import { css } from "@emotion/react";
  *
  * @since 1.0.0
  */
-export default function TadaListSidebar({ listId, tadaLists }) {
+export default function TadaListSidebar({
+  isAddTadaListFocused,
+  listId,
+  tadaLists,
+}) {
   return (
     <section
       css={css`
@@ -17,7 +21,11 @@ export default function TadaListSidebar({ listId, tadaLists }) {
         overflow-y: auto;
       `}
     >
-      <TadaListItems listId={listId} tadaLists={tadaLists} />
+      <TadaListItems
+        isAddTadaListFocused={isAddTadaListFocused}
+        listId={listId}
+        tadaLists={tadaLists}
+      />
     </section>
   );
 }

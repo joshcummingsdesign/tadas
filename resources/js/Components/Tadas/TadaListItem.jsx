@@ -20,9 +20,9 @@ import {
  * @since 1.0.0
  */
 export default function TadaListItem({ tadaList, selected }) {
-  const theme = useTheme();
-
   const [anchorEl, setAnchorEl] = useState(null);
+
+  const theme = useTheme();
 
   const handleClose = (e) => {
     e.stopPropagation();
@@ -40,7 +40,7 @@ export default function TadaListItem({ tadaList, selected }) {
   };
 
   const onDelete = (e, id) => {
-    e.stopPropagation();
+    handleClose(e);
     Inertia.delete(route("tadaLists.destroy", id), { replace: true });
   };
 

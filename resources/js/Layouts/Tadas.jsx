@@ -17,6 +17,8 @@ import ErrorSnackbar from "@/Components/Error/ErrorSnackbar";
 export default function Tadas({
   auth,
   errors,
+  isAddTadaListFocused,
+  isAddTadaFocused,
   listId,
   tadaLists,
   tadaList,
@@ -38,13 +40,23 @@ export default function Tadas({
 
       <div
         css={css`
-          display: flex;
+          ${theme.breakpoints.up("md")} {
+            display: flex;
+          }
         `}
       >
         {isDesktop && (
-          <TadaListSidebar listId={listId} tadaLists={tadaLists || []} />
+          <TadaListSidebar
+            isAddTadaListFocused={isAddTadaListFocused}
+            listId={listId}
+            tadaLists={tadaLists || []}
+          />
         )}
-        <TadaListMain tadaList={tadaList} tadas={tadas || []} />
+        <TadaListMain
+          isAddTadaFocused={isAddTadaFocused}
+          tadaList={tadaList}
+          tadas={tadas || []}
+        />
       </div>
     </Base>
   );

@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useEffect } from "react";
 import Nav from "@/Components/Nav";
-import { getThemeObject } from "@/Layouts/theme";
+import { getThemeObject } from "@/theme";
 import { SnackbarProvider } from "notistack";
 import {
   ThemeProvider,
