@@ -1,8 +1,10 @@
 {
   "private": true,
   "scripts": {
-    "dev": "vite",
     "build": "vite build",
+    "dev": "vite",
+    "generate": "scripty",
+    "idehelpers": "scripty",
     "unreleased": "scripty"
   },
   "devDependencies": {

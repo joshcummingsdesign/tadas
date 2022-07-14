@@ -15,7 +15,8 @@ yarn-error.log
 /.idea
 /.vscode
 /.tool-versions
-/_ide_helper.php
 .DS_Store
 .php-cs-fixer.cache
 .phpstorm.meta.php
+/_ide_helper.php
+/_ide_helper_models.php

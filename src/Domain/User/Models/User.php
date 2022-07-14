@@ -7,7 +7,6 @@ namespace Domain\User\Models;
 use Domain\Tadas\Models\CurrentTadaList;
 use Domain\Tadas\Models\Tada;
 use Domain\Tadas\Models\TadaList;
-use Eloquent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -19,8 +18,7 @@ use Laravel\Sanctum\HasApiTokens;
  * The User model.
  *
  * @unreleased
- *
- * @mixin Eloquent
+ * @mixin IdeHelperUser
  */
 class User extends Authenticatable {
   use HasApiTokens, HasFactory, Notifiable;

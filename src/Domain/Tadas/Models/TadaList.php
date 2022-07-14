@@ -3,7 +3,6 @@
 namespace Domain\Tadas\Models;
 
 use Domain\User\Models\User;
-use Eloquent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -13,8 +12,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * TadaList model.
  *
  * @unreleased
- *
- * @mixin Eloquent
+ * @mixin IdeHelperTadaList
  */
 class TadaList extends Model {
   use HasFactory;
