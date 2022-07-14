@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Tadas;
 
+use App\Exceptions\UnprocessableEntityException;
 use Database\Factories\TadaListFactory;
 use Database\Factories\UserFactory;
 use Domain\Tadas\Actions\DeleteTadaListAction;
@@ -18,5 +19,13 @@ class DeleteTadaListActionTest extends TestCase {
     (new DeleteTadaListAction())($user, $tadaList->id);
 
     $this->assertDatabaseMissing($tadaList->getTable(), ['id' => $tadaList->id]);
+  }
+
+  public function testShouldThrowIfListNotFound(): void {
+    $user = UserFactory::new()->create();
+
+    $this->expectException(UnprocessableEntityException::class);
+
+    (new DeleteTadaListAction())($user, 1);
   }
 }
