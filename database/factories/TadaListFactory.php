@@ -4,6 +4,11 @@ namespace Database\Factories;
 
 use Domain\Tadas\Models\TadaList;
 
+/**
+ * TadaList factory.
+ *
+ * @unreleased
+ */
 class TadaListFactory {
   public int $user_id;
 

@@ -6,6 +6,11 @@ use Domain\User\Models\User;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 
+/**
+ * User factory.
+ *
+ * @unreleased
+ */
 class UserFactory {
   public Carbon|int|null $email_verified_at = 0;
 

@@ -4,6 +4,11 @@ namespace Database\Factories;
 
 use Domain\Tadas\DataTransferObjects\StoreTadaListData;
 
+/**
+ * StoreTadaListData factory.
+ *
+ * @unreleased
+ */
 class StoreTadaListDataFactory {
   public ?string $name;
 
