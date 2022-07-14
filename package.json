@@ -5,6 +5,7 @@
     "dev": "vite",
     "generate": "scripty",
     "idehelpers": "scripty",
+    "test": "scripty",
     "unreleased": "scripty"
   },
   "devDependencies": {

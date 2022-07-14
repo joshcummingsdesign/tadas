@@ -16,8 +16,8 @@ use Domain\Tadas\Actions\SetCurrentTadaListAction;
 use Domain\Tadas\Actions\UpdateTadaListAction;
 use Domain\Tadas\DataTransferObjects\StoreTadaListData;
 use Domain\Tadas\Requests\StoreTadaListRequest;
-use Domain\User\Actions\GetUserAction;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -28,57 +28,20 @@ use Inertia\Response;
  * @unreleased
  */
 class TadaListsController extends Controller {
-  private GetUserAction $getUserAction;
-  private GetCurrentTadaListAction $getCurrentTadaListAction;
-  private GetTadaListsAction $getTadaListsAction;
-  private GetTadaListAction $getTadaListAction;
-  private GetTadasAction $getTadasAction;
-  private CreateTadaListAction $createTadaListAction;
-  private SetCurrentTadaListAction $setCurrentTadaListAction;
-  private DeleteTadaListAction $deleteTadaListAction;
-  private UpdateTadaListAction $updateTadaListAction;
-
-  /**
-   * Create a new controller instance.
-   *
-   * @unreleased
-   */
-  public function __construct(
-    GetUserAction $getUserAction,
-    GetCurrentTadaListAction $getCurrentTadaListAction,
-    GetTadaListsAction $getTadaListsAction,
-    GetTadaListAction $getTadaListAction,
-    GetTadasAction $getTadasAction,
-    CreateTadaListAction $createTadaListAction,
-    SetCurrentTadaListAction $setCurrentTadaListAction,
-    DeleteTadaListAction $deleteTadaListAction,
-    UpdateTadaListAction $updateTadaListAction
-  ) {
-    $this->getUserAction = $getUserAction;
-    $this->getCurrentTadaListAction = $getCurrentTadaListAction;
-    $this->getTadaListsAction = $getTadaListsAction;
-    $this->getTadaListAction = $getTadaListAction;
-    $this->getTadasAction = $getTadasAction;
-    $this->createTadaListAction = $createTadaListAction;
-    $this->setCurrentTadaListAction = $setCurrentTadaListAction;
-    $this->deleteTadaListAction = $deleteTadaListAction;
-    $this->updateTadaListAction = $updateTadaListAction;
-  }
-
   /**
    * Display all tada lists.
    *
    * @unreleased
    */
-  public function index(): Response|RedirectResponse {
-    $user = ($this->getUserAction)();
-    $currentTadaList = ($this->getCurrentTadaListAction)($user);
+  public function index(Request $request): Response|RedirectResponse {
+    $user = $request->user();
+    $currentTadaList = app(GetCurrentTadaListAction::class)($user);
 
     if ($currentTadaList) {
       return Redirect::route('tadaLists.show', ['id' => $currentTadaList->id]);
     }
 
-    $tadaLists = ($this->getTadaListsAction)($user);
+    $tadaLists = app(GetTadaListsAction::class)($user);
 
     return Inertia::render('Tadas/TadaLists', [
       'tadaLists' => $tadaLists,
@@ -94,8 +57,9 @@ class TadaListsController extends Controller {
     $tadaListData = new StoreTadaListData(...$request->validated());
 
     $userId = $request->user()->id;
-    $tadaList = ($this->createTadaListAction)($userId, $tadaListData);
-    ($this->setCurrentTadaListAction)($userId, $tadaList->id);
+
+    $tadaList = app(CreateTadaListAction::class)($userId, $tadaListData);
+    app(SetCurrentTadaListAction::class)($userId, $tadaList->id);
 
     return Redirect::route('tadaLists.show', ['id' => $tadaList->id]);
   }
@@ -105,17 +69,18 @@ class TadaListsController extends Controller {
    *
    * @unreleased
    */
-  public function show(int $id): Response|RedirectResponse {
-    $user = ($this->getUserAction)();
-    $tadaList = ($this->getTadaListAction)($user, $id);
+  public function show(Request $request, int $id): Response|RedirectResponse {
+    $user = $request->user();
+    $tadaList = app(GetTadaListAction::class)($user, $id);
 
     if (!$tadaList) {
       return Redirect::route('tadaLists.index');
     }
 
-    $tadaLists = ($this->getTadaListsAction)($user);
-    $tadas = ($this->getTadasAction)($tadaList);
-    ($this->setCurrentTadaListAction)($user->id, $tadaList->id);
+    $tadaLists = app(GetTadaListsAction::class)($user);
+    $tadas = app(GetTadasAction::class)($tadaList);
+
+    app(SetCurrentTadaListAction::class)($user->id, $tadaList->id);
 
     return Inertia::render('Tadas/TadaList', [
       'listId' => $tadaList->id,
@@ -133,10 +98,10 @@ class TadaListsController extends Controller {
   public function update(StoreTadaListRequest $request, int $id): RedirectResponse {
     $tadaListData = new StoreTadaListData(...$request->validated());
 
-    $user = ($this->getUserAction)();
+    $user = $request->user();
 
     try {
-      ($this->updateTadaListAction)($user, $id, $tadaListData);
+      app(UpdateTadaListAction::class)($user, $id, $tadaListData);
     } catch (UnprocessableEntityException $e) {
       return Redirect::back()->withErrors($e->getPublicMessage());
     }
@@ -149,11 +114,11 @@ class TadaListsController extends Controller {
    *
    * @unreleased
    */
-  public function destroy(int $id): RedirectResponse {
-    $user = ($this->getUserAction)();
+  public function destroy(Request $request, int $id): RedirectResponse {
+    $user = $request->user();
 
     try {
-      ($this->deleteTadaListAction)($user, $id);
+      app(DeleteTadaListAction::class)($user, $id);
     } catch (UnprocessableEntityException $e) {
       return Redirect::back()->withErrors($e->getPublicMessage());
     }
