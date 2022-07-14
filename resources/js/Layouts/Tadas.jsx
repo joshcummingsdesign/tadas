@@ -1,13 +1,14 @@
 /** @jsxImportSource @emotion/react */
 import React from "react";
 import Base from "@/Layouts/Base";
+import ErrorSnackbar from "@/Components/Error/ErrorSnackbar";
+import NoTadasFound from "@/Components/Tadas/NoTadasFound";
+import TadaListItems from "@/Components/Tadas/TadaListItems";
 import TadaListMain from "@/Components/Tadas/TadaListMain";
 import TadaListSidebar from "@/Components/Tadas/TadaListSidebar";
 import { Head } from "@inertiajs/inertia-react";
 import { css } from "@emotion/react";
 import { useMediaQuery, useTheme } from "@mui/material";
-import TadaListItems from "@/Components/Tadas/TadaListItems";
-import ErrorSnackbar from "@/Components/Error/ErrorSnackbar";
 
 /**
  * Tadas layout.
@@ -34,7 +35,7 @@ export default function Tadas({
         <TadaListItems listId={listId} tadaLists={tadaLists || []} />
       )}
     >
-      <Head title={tadaList ? tadaList.name : "Tadas"} />
+      <Head title={tadaList ? tadaList.name : "Welcome"} />
 
       <ErrorSnackbar errors={errors} />
 
@@ -52,11 +53,15 @@ export default function Tadas({
             tadaLists={tadaLists || []}
           />
         )}
-        <TadaListMain
-          isAddTadaFocused={isAddTadaFocused}
-          tadaList={tadaList}
-          tadas={tadas || []}
-        />
+        {tadaLists && tadaLists.length ? (
+          <TadaListMain
+            isAddTadaFocused={isAddTadaFocused}
+            tadaList={tadaList}
+            tadas={tadas || []}
+          />
+        ) : (
+          <NoTadasFound />
+        )}
       </div>
     </Base>
   );

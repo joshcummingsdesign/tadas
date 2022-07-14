@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from "react";
-import AddButton from "@/Components/AddButton";
+import AddButton from "@/Components/Buttons/AddButton";
 import TadaListItem from "@/Components/Tadas/TadaListItem";
 import { Inertia } from "@inertiajs/inertia";
 import { List } from "@mui/material";

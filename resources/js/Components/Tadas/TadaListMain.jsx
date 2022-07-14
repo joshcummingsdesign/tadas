@@ -1,12 +1,13 @@
 /** @jsxImportSource @emotion/react */
 import React, { Fragment, useEffect, useRef, useState } from "react";
-import AddButton from "@/Components/AddButton";
+import AddButton from "@/Components/Buttons/AddButton";
 import BareTextInput from "@/Components/Form/BareTextInput";
+import Panel from "@/Components/Panel";
 import Tada from "@/Components/Tadas/Tada";
 import { Inertia } from "@inertiajs/inertia";
 import { css } from "@emotion/react";
-import { useTheme, Typography, Stack } from "@mui/material";
 import { strings } from "@/strings";
+import { useTheme, Typography, Stack } from "@mui/material";
 
 /**
  * TadaListMain component.
@@ -112,27 +113,9 @@ export default function TadaListMain({ isAddTadaFocused, tadaList, tadas }) {
   };
 
   return (
-    <section
-      css={css`
-        height: calc(100vh - 56px);
-        width: 100%;
-        overflow-y: auto;
-        background-color: ${theme.palette.mode === "light"
-          ? "rgba(0,0,0,0.03)"
-          : "rgba(255,255,255,0.03)"};
-
-        ${theme.breakpoints.up("sm")} {
-          height: calc(100vh - 64px);
-        }
-
-        ${theme.breakpoints.up("md")} {
-          width: calc(100% - 300px);
-        }
-      `}
-    >
+    <Panel>
       <div
         css={css`
-          padding: 30px;
           margin: 0 auto;
           max-width: 600px;
 
@@ -192,6 +175,6 @@ export default function TadaListMain({ isAddTadaFocused, tadaList, tadas }) {
           </Fragment>
         )}
       </div>
-    </section>
+    </Panel>
   );
 }
