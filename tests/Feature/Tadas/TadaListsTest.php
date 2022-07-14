@@ -71,7 +71,7 @@ class TadaListsTest extends TestCase {
     TadaFactory::new() ->withUserId($user->id) ->withTadaListId($tadaList->id) ->create();
 
     $this->actingAs($user)->get('/tadas/' . $tadaList->id)
-    ->assertStatus(200)
+      ->assertStatus(200)
       ->assertInertia(fn (Assert $page) => $page->component('Tadas/TadaList')
         ->where('listId', $tadaList->id)
         ->where('tadaLists', $user->tadaLists()->get())
