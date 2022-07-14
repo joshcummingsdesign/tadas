@@ -3,21 +3,21 @@
 namespace Tests\Feature\Auth;
 
 use App\ServiceProviders\RouteServiceProvider;
-use Domain\User\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\Feature\User\Factories\UserFactory;
 use Tests\TestCase;
 
 class AuthenticationTest extends TestCase {
   use RefreshDatabase;
 
-  public function testLoginScreenCanBeRendered(): void {
+  public function testShouldRenderLoginScreen(): void {
     $response = $this->get('/login');
 
     $response->assertStatus(200);
   }
 
-  public function testUsersCanAuthenticateUsingTheLoginScreen(): void {
-    $user = User::factory()->create();
+  public function testShouldLogin(): void {
+    $user = UserFactory::new()->create();
 
     $response = $this->post('/login', [
       'email' => $user->email,
@@ -28,8 +28,8 @@ class AuthenticationTest extends TestCase {
     $response->assertRedirect(RouteServiceProvider::HOME);
   }
 
-  public function testUsersCanNotAuthenticateWithInvalidPassword(): void {
-    $user = User::factory()->create();
+  public function shouldPreventInvalidPassword(): void {
+    $user = UserFactory::new()->create();
 
     $this->post('/login', [
       'email' => $user->email,

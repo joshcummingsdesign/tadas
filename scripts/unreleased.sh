@@ -8,9 +8,11 @@ if [[ -z $1 ]]; then
   exit 1
 fi
 
-# Run since-unreleased on plugin and theme
-./vendor/bin/since-unreleased.sh src/ $1
+# Run since-unreleased in the following directories
+./vendor/bin/since-unreleased.sh database/ $1
 ./vendor/bin/since-unreleased.sh resources/js/ $1
+./vendor/bin/since-unreleased.sh src/ $1
+./vendor/bin/since-unreleased.sh tests/ $1
 
 # Success
 printf "\n${GREEN}Successfully updated version tags!${NC}\n\n"

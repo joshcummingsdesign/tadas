@@ -2,23 +2,23 @@
 
 namespace Tests\Feature\Auth;
 
-use Domain\User\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\Feature\User\Factories\UserFactory;
 use Tests\TestCase;
 
 class PasswordConfirmationTest extends TestCase {
   use RefreshDatabase;
 
-  public function testConfirmPasswordScreenCanBeRendered(): void {
-    $user = User::factory()->create();
+  public function testShouldRenderConfirmPasswordScreen(): void {
+    $user = UserFactory::new()->create();
 
     $response = $this->actingAs($user)->get('/confirm-password');
 
     $response->assertStatus(200);
   }
 
-  public function testPasswordCanBeConfirmed(): void {
-    $user = User::factory()->create();
+  public function testShouldConfirmPassword(): void {
+    $user = UserFactory::new()->create();
 
     $response = $this->actingAs($user)->post('/confirm-password', [
       'password' => 'password',
@@ -28,8 +28,8 @@ class PasswordConfirmationTest extends TestCase {
     $response->assertSessionHasNoErrors();
   }
 
-  public function testPasswordIsNotConfirmedWithInvalidPassword(): void {
-    $user = User::factory()->create();
+  public function testShouldNotConfirmInvalidPassword(): void {
+    $user = UserFactory::new()->create();
 
     $response = $this->actingAs($user)->post('/confirm-password', [
       'password' => 'wrong-password',

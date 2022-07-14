@@ -16,6 +16,7 @@ services:
     portforward: 3307
   database_testing:
     type: mysql:8.0
+    portforward: 3308
     creds:
       user: laravel
       password: laravel
