@@ -72,7 +72,6 @@ class TadaListsController extends Controller {
    */
   public function index(): Response|RedirectResponse {
     $user = ($this->getUserAction)();
-
     $currentTadaList = ($this->getCurrentTadaListAction)($user);
 
     if ($currentTadaList) {
