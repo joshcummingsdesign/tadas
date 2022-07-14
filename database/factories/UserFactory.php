@@ -23,14 +23,11 @@ class UserFactory {
     $user->email_verified_at = $this->email_verified_at === 0 ? now() : $this->email_verified_at;
     $user->remember_token = Str::random(10);
 
-    return $user;
+    $user->save();
+
+    return $user->refresh();
   }
 
-  /**
-   * Indicate that the model's email address should be unverified.
-   *
-   * @unreleased
-   */
   public function unverified(): static {
     $clone = clone $this;
     $clone->email_verified_at = null;
