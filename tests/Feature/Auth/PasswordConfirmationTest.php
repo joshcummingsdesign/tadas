@@ -2,8 +2,8 @@
 
 namespace Tests\Feature\Auth;
 
-use Database\Factories\UserFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\Feature\User\Factories\UserFactory;
 use Tests\TestCase;
 
 class PasswordConfirmationTest extends TestCase {

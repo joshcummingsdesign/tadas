@@ -3,8 +3,8 @@
 namespace Tests\Feature\Auth;
 
 use App\ServiceProviders\RouteServiceProvider;
-use Database\Factories\UserFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\Feature\User\Factories\UserFactory;
 use Tests\TestCase;
 
 class AuthenticationTest extends TestCase {

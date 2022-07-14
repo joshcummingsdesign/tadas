@@ -1,11 +1,11 @@
 <?php
 
-namespace Tests\Feature\Tadas;
+namespace Tests\Feature\Tadas\Actions;
 
-use Database\Factories\TadaListFactory;
-use Database\Factories\UserFactory;
 use Domain\Tadas\Actions\GetTadaListsAction;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\Feature\Tadas\Factories\TadaListFactory;
+use Tests\Feature\User\Factories\UserFactory;
 use Tests\TestCase;
 
 class GetTadaListsActionTest extends TestCase {

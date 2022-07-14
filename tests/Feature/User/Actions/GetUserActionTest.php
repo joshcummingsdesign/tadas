@@ -1,11 +1,11 @@
 <?php
 
-namespace Tests\Feature\User;
+namespace Tests\Feature\User\Actions;
 
-use Database\Factories\UserFactory;
 use Domain\User\Actions\GetUserAction;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Auth;
+use Tests\Feature\User\Factories\UserFactory;
 use Tests\TestCase;
 
 class GetUserActionTest extends TestCase {

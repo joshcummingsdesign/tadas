@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Factories;
+namespace Tests\Feature\User\Factories;
 
 use Domain\User\Models\User;
 use Illuminate\Support\Carbon;

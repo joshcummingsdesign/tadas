@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Factories;
+namespace Tests\Feature\Tadas\Factories;
 
 use Domain\Tadas\Models\TadaList;
 

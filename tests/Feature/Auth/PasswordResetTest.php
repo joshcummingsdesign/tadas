@@ -2,10 +2,10 @@
 
 namespace Tests\Feature\Auth;
 
-use Database\Factories\UserFactory;
 use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Notification;
+use Tests\Feature\User\Factories\UserFactory;
 use Tests\TestCase;
 
 class PasswordResetTest extends TestCase {
