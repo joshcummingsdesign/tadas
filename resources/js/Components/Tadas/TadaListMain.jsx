@@ -42,12 +42,12 @@ export default function TadaListMain({ isAddTadaFocused, tadaList, tadas }) {
     }
   }, [tadaList, tadaListId]);
 
-  const addTada = (tada_list_id) => {
+  const addTada = () => {
     Inertia.post(
       route("tadas.store"),
       {
         name: strings.defaultTadaTitle,
-        tada_list_id,
+        tada_list_id: tadaList.id,
       },
       { replace: true }
     );
@@ -88,7 +88,7 @@ export default function TadaListMain({ isAddTadaFocused, tadaList, tadas }) {
   const handelKeyDown = (e) => {
     if (e.key === "Enter") {
       handleTitleUpdate();
-      addButton.current.focus();
+      addTada(tadaList.id);
     }
 
     if (e.key === "Escape") {
@@ -101,7 +101,7 @@ export default function TadaListMain({ isAddTadaFocused, tadaList, tadas }) {
   };
 
   const handleTadaInputEnterKey = () => {
-    addButton.current.focus();
+    addTada(tadaList.id);
   };
 
   return (
@@ -177,7 +177,7 @@ export default function TadaListMain({ isAddTadaFocused, tadaList, tadas }) {
               ))}
               <AddButton
                 innerRef={addButton}
-                onClick={() => addTada(tadaList.id)}
+                onClick={addTada}
                 disablePadding={true}
                 autoFocus={true}
               />
