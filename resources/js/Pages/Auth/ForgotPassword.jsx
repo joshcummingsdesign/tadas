@@ -9,7 +9,7 @@ import Link from "@/Components/Link";
 /**
  * ForgotPassword page.
  *
- * @unreleased
+ * @since 1.0.0
  */
 export default function ForgotPassword({ status }) {
   const { data, setData, post, processing, errors } = useForm({

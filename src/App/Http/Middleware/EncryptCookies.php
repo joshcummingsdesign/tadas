@@ -9,13 +9,13 @@ use Illuminate\Cookie\Middleware\EncryptCookies as Middleware;
 /**
  * Encrypt cookies middleware.
  *
- * @unreleased
+ * @since 1.0.0
  */
 class EncryptCookies extends Middleware {
   /**
    * The names of the cookies that should not be encrypted.
    *
-   * @unreleased
+   * @since 1.0.0
    *
    * @var array<int, string>
    */

@@ -16,7 +16,7 @@ import {
 /**
  * Login page.
  *
- * @unreleased
+ * @since 1.0.0
  */
 export default function Login({ status, canResetPassword }) {
   const { data, setData, post, processing, errors, reset } = useForm({

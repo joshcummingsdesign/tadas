@@ -10,13 +10,13 @@ use Illuminate\Support\ServiceProvider;
 /**
  * Broadcast service provider.
  *
- * @unreleased
+ * @since 1.0.0
  */
 class BroadcastServiceProvider extends ServiceProvider {
   /**
    * Bootstrap any application services.
    *
-   * @unreleased
+   * @since 1.0.0
    */
   public function boot(): void {
     Broadcast::routes();

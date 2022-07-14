@@ -12,13 +12,13 @@ use Illuminate\Support\Facades\Auth;
 /**
  * Redirect if authenticated middleware.
  *
- * @unreleased
+ * @since 1.0.0
  */
 class RedirectIfAuthenticated {
   /**
    * Handle an incoming request.
    *
-   * @unreleased
+   * @since 1.0.0
    *
    * @param string[]|null ...$guards
    *

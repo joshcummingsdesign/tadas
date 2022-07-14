@@ -25,13 +25,13 @@ use Inertia\Response;
 /**
  * Tada lists controller.
  *
- * @unreleased
+ * @since 1.0.0
  */
 class TadaListsController extends Controller {
   /**
    * Display all tada lists.
    *
-   * @unreleased
+   * @since 1.0.0
    */
   public function index(Request $request): Response|RedirectResponse {
     $user = $request->user();
@@ -51,7 +51,7 @@ class TadaListsController extends Controller {
   /**
    * Store a tada list.
    *
-   * @unreleased
+   * @since 1.0.0
    */
   public function store(StoreTadaListRequest $request): RedirectResponse {
     $tadaListData = new StoreTadaListData(...$request->validated());
@@ -67,7 +67,7 @@ class TadaListsController extends Controller {
   /**
    * Display the specified tada list.
    *
-   * @unreleased
+   * @since 1.0.0
    */
   public function show(Request $request, int $id): Response|RedirectResponse {
     $user = $request->user();
@@ -93,7 +93,7 @@ class TadaListsController extends Controller {
   /**
    * Update the specified tada list.
    *
-   * @unreleased
+   * @since 1.0.0
    */
   public function update(StoreTadaListRequest $request, int $id): RedirectResponse {
     $tadaListData = new StoreTadaListData(...$request->validated());
@@ -112,7 +112,7 @@ class TadaListsController extends Controller {
   /**
    * Delete the specified tada list.
    *
-   * @unreleased
+   * @since 1.0.0
    */
   public function destroy(Request $request, int $id): RedirectResponse {
     $user = $request->user();

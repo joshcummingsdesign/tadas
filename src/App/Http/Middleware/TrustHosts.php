@@ -9,13 +9,13 @@ use Illuminate\Http\Middleware\TrustHosts as Middleware;
 /**
  * Trust hosts middleware.
  *
- * @unreleased
+ * @since 1.0.0
  */
 class TrustHosts extends Middleware {
   /**
    * Get the host patterns that should be trusted.
    *
-   * @unreleased
+   * @since 1.0.0
    *
    * @return array<int, string|null>
    */

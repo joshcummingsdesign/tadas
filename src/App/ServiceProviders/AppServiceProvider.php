@@ -10,13 +10,13 @@ use Illuminate\Support\ServiceProvider;
 /**
  * App service provider.
  *
- * @unreleased
+ * @since 1.0.0
  */
 class AppServiceProvider extends ServiceProvider {
   /**
    * Register any application services.
    *
-   * @unreleased
+   * @since 1.0.0
    */
   public function register(): void {
     Factory::guessFactoryNamesUsing(function ($class) {
@@ -27,7 +27,7 @@ class AppServiceProvider extends ServiceProvider {
   /**
    * Bootstrap any application services.
    *
-   * @unreleased
+   * @since 1.0.0
    */
   public function boot(): void {
   }

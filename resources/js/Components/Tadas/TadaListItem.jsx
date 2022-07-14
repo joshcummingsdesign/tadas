@@ -17,7 +17,7 @@ import {
 /**
  * TadaListItem component.
  *
- * @unreleased
+ * @since 1.0.0
  */
 export default function TadaListItem({ tadaList, selected }) {
   const theme = useTheme();

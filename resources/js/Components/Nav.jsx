@@ -24,7 +24,7 @@ import {
 /**
  * Nav component.
  *
- * @unreleased
+ * @since 1.0.0
  */
 export default function Nav({ auth, toggleTheme, drawerItems }) {
   const [drawerIsOpen, setDrawerIsOpen] = useState(false);

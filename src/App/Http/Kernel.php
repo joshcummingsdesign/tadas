@@ -32,7 +32,7 @@ use Illuminate\View\Middleware\ShareErrorsFromSession;
 /**
  * The http kernel.
  *
- * @unreleased
+ * @since 1.0.0
  */
 class Kernel extends HttpKernel {
   /**
@@ -40,7 +40,7 @@ class Kernel extends HttpKernel {
    *
    * Middleware run during every request to your application.
    *
-   * @unreleased
+   * @since 1.0.0
    *
    * @var array<int, class-string|string>
    */
@@ -57,7 +57,7 @@ class Kernel extends HttpKernel {
   /**
    * The application's route middleware groups.
    *
-   * @unreleased
+   * @since 1.0.0
    *
    * @var array<string, array<int, class-string|string>>
    */
@@ -84,7 +84,7 @@ class Kernel extends HttpKernel {
    *
    * Middleware which may be assigned to groups or used individually.
    *
-   * @unreleased
+   * @since 1.0.0
    *
    * @var array<string, class-string|string>
    */

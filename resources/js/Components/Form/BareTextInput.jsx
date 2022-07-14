@@ -6,7 +6,7 @@ import { useTheme } from "@mui/material";
 /**
  * BareTextInput component.
  *
- * @unreleased
+ * @since 1.0.0
  */
 export default function BareTextInput({ className, variant, ...props }) {
   const theme = useTheme();

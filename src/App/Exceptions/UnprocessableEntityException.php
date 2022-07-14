@@ -10,20 +10,20 @@ use Throwable;
 /**
  * Unprocessable entity exception.
  *
- * @unreleased
+ * @since 1.0.0
  */
 class UnprocessableEntityException extends Exception {
   /**
    * The user-facing message.
    *
-   * @unreleased
+   * @since 1.0.0
    */
   protected ?string $publicMessage;
 
   /**
    * Create a new exception instance.
    *
-   * @unreleased
+   * @since 1.0.0
    */
   public function __construct(
     string $message = "",

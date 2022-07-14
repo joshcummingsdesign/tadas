@@ -10,14 +10,14 @@ import BareTextInput from "@/Components/Form/BareTextInput";
 /**
  * The max width of the tada items.
  *
- * @unreleased
+ * @since 1.0.0
  */
 const tadaMaxWidth = "500px";
 
 /**
  * TadaListMain component.
  *
- * @unreleased
+ * @since 1.0.0
  */
 export default function TadaListMain({ tadaList, tadas }) {
   const [titleText, setTitleText] = useState("");

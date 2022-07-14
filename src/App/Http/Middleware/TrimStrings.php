@@ -9,13 +9,13 @@ use Illuminate\Foundation\Http\Middleware\TrimStrings as Middleware;
 /**
  * Trim string middleware.
  *
- * @unreleased
+ * @since 1.0.0
  */
 class TrimStrings extends Middleware {
   /**
    * The names of the attributes that should not be trimmed.
    *
-   * @unreleased
+   * @since 1.0.0
    *
    * @var array<int, string>
    */

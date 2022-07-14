@@ -19,7 +19,7 @@ import BareTextInput from "@/Components/Form/BareTextInput";
 /**
  * Tada component.
  *
- * @unreleased
+ * @since 1.0.0
  */
 export default function Tada({ className, tada }) {
   const [titleText, setTitleText] = useState("");

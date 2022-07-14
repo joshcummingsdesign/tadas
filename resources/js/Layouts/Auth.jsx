@@ -9,7 +9,7 @@ import { Alert, Container, Paper, Typography } from "@mui/material";
 /**
  * Auth layout.
  *
- * @unreleased
+ * @since 1.0.0
  */
 export default function Auth({ title, errors, status, children }) {
   return (

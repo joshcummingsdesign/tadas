@@ -7,7 +7,7 @@ use Domain\Tadas\Models\CurrentTadaList;
 /**
  * CurrentTadaList factory.
  *
- * @unreleased
+ * @since 1.0.0
  */
 class CurrentTadaListFactory {
   public int $user_id;

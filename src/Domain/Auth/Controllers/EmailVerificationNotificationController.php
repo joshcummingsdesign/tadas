@@ -12,13 +12,13 @@ use Illuminate\Http\Request;
 /**
  * Email verification notification controller.
  *
- * @unreleased
+ * @since 1.0.0
  */
 class EmailVerificationNotificationController extends Controller {
   /**
    * Send a new email verification notification.
    *
-   * @unreleased
+   * @since 1.0.0
    */
   public function store(Request $request): RedirectResponse {
     if ($request->user()->hasVerifiedEmail()) {

@@ -12,7 +12,7 @@ use Illuminate\Routing\Controller as BaseController;
 /**
  * The app http controller.
  *
- * @unreleased
+ * @since 1.0.0
  */
 class Controller extends BaseController {
   use AuthorizesRequests, DispatchesJobs, ValidatesRequests;

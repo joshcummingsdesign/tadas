@@ -10,13 +10,13 @@ use Domain\Tadas\Models\TadaList;
 /**
  * Create tada list action.
  *
- * @unreleased
+ * @since 1.0.0
  */
 class CreateTadaListAction {
   /**
    * Invoke the action.
    *
-   * @unreleased
+   * @since 1.0.0
    */
   public function __invoke(int $userId, StoreTadaListData $tadaListData): TadaList {
     return TadaList::create(array_merge([

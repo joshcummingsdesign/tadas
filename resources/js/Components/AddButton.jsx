@@ -9,7 +9,7 @@ import {
 /**
  * AddButton component.
  *
- * @unreleased
+ * @since 1.0.0
  */
 export default function AddButton({
   className,

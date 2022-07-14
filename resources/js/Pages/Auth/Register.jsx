@@ -9,7 +9,7 @@ import { css } from "@emotion/react";
 /**
  * Register page.
  *
- * @unreleased
+ * @since 1.0.0
  */
 export default function Register() {
   const { data, setData, post, processing, errors, reset } = useForm({

@@ -13,13 +13,13 @@ use Illuminate\Http\RedirectResponse;
 /**
  * Verify email controller.
  *
- * @unreleased
+ * @since 1.0.0
  */
 class VerifyEmailController extends Controller {
   /**
    * Mark the authenticated user's email address as verified.
    *
-   * @unreleased
+   * @since 1.0.0
    */
   public function __invoke(EmailVerificationRequest $request): RedirectResponse {
     if ($request->user()->hasVerifiedEmail()) {

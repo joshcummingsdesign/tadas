@@ -7,7 +7,7 @@ import { useTheme } from "@mui/material";
 /**
  * Link component.
  *
- * @unreleased
+ * @since 1.0.0
  */
 export default function StyledLink({ children, ...props }) {
   const theme = useTheme();

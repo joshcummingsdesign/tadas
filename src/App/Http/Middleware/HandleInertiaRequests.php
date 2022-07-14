@@ -11,7 +11,7 @@ use Tightenco\Ziggy\Ziggy;
 /**
  * Inertia request handler middleware.
  *
- * @unreleased
+ * @since 1.0.0
  *
  * @var string
  */
@@ -19,7 +19,7 @@ class HandleInertiaRequests extends Middleware {
   /**
    * The root template that is loaded on the first page visit.
    *
-   * @unreleased
+   * @since 1.0.0
    *
    * @var string
    */
@@ -28,7 +28,7 @@ class HandleInertiaRequests extends Middleware {
   /**
    * Determine the current asset version.
    *
-   * @unreleased
+   * @since 1.0.0
    */
   public function version(Request $request): ?string {
     return parent::version($request);
@@ -37,7 +37,7 @@ class HandleInertiaRequests extends Middleware {
   /**
    * Define the props that are shared by default.
    *
-   * @unreleased
+   * @since 1.0.0
    */
   public function share(Request $request): array {
     return array_merge(parent::share($request), [

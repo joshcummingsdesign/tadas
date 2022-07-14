@@ -12,13 +12,13 @@ use Domain\User\Models\User;
 /**
  * Create tada action.
  *
- * @unreleased
+ * @since 1.0.0
  */
 class CreateTadaAction {
   /**
    * Invoke the action.
    *
-   * @unreleased
+   * @since 1.0.0
    *
    * @throws UnprocessableEntityException
    */

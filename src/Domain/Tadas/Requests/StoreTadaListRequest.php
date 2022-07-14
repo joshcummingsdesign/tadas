@@ -7,13 +7,13 @@ use Illuminate\Foundation\Http\FormRequest;
 /**
  * Store tada list request.
  *
- * @unreleased
+ * @since 1.0.0
  */
 class StoreTadaListRequest extends FormRequest {
   /**
    * Determine if the user is authorized to make this request.
    *
-   * @unreleased
+   * @since 1.0.0
    */
   public function authorize(): bool {
     return true;
@@ -22,7 +22,7 @@ class StoreTadaListRequest extends FormRequest {
   /**
    * Get the validation rules that apply to the request.
    *
-   * @unreleased
+   * @since 1.0.0
    */
   public function rules(): array {
     return [

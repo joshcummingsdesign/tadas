@@ -9,13 +9,13 @@ use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as Middleware;
 /**
  * Verify CSRF token middleware.
  *
- * @unreleased
+ * @since 1.0.0
  */
 class VerifyCsrfToken extends Middleware {
   /**
    * The URIs that should be excluded from CSRF verification.
    *
-   * @unreleased
+   * @since 1.0.0
    *
    * @var array<int, string>
    */

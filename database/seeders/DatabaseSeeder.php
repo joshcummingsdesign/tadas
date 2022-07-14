@@ -7,13 +7,13 @@ use Illuminate\Database\Seeder;
 /**
  * The database seeder.
  *
- * @unreleased
+ * @since 1.0.0
  */
 class DatabaseSeeder extends Seeder {
   /**
    * Seed the application's database.
    *
-   * @unreleased
+   * @since 1.0.0
    */
   public function run(): void {
   }

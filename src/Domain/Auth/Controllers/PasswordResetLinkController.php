@@ -15,13 +15,13 @@ use Inertia\Response;
 /**
  * Password reset link controller.
  *
- * @unreleased
+ * @since 1.0.0
  */
 class PasswordResetLinkController extends Controller {
   /**
    * Display the password reset link request view.
    *
-   * @unreleased
+   * @since 1.0.0
    */
   public function create(): Response {
     return Inertia::render('Auth/ForgotPassword', [
@@ -32,7 +32,7 @@ class PasswordResetLinkController extends Controller {
   /**
    * Handle an incoming password reset link request.
    *
-   * @unreleased
+   * @since 1.0.0
    *
    * @throws ValidationException
    */

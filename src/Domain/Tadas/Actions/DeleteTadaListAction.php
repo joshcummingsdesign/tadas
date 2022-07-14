@@ -10,13 +10,13 @@ use Domain\User\Models\User;
 /**
  * Delete tada list action.
  *
- * @unreleased
+ * @since 1.0.0
  */
 class DeleteTadaListAction {
   /**
    * Invoke the action.
    *
-   * @unreleased
+   * @since 1.0.0
    *
    * @throws UnprocessableEntityException
    */

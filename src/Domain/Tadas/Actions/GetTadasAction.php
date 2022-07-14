@@ -10,13 +10,13 @@ use Illuminate\Database\Eloquent\Collection;
 /**
  * Get tadas action.
  *
- * @unreleased
+ * @since 1.0.0
  */
 class GetTadasAction {
   /**
    * Invoke the action.
    *
-   * @unreleased
+   * @since 1.0.0
    */
   public function __invoke(TadaList $tadaList): Collection {
     return $tadaList->tadas()->get();

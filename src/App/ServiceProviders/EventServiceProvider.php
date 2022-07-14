@@ -11,13 +11,13 @@ use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvi
 /**
  * Event service provider.
  *
- * @unreleased
+ * @since 1.0.0
  */
 class EventServiceProvider extends ServiceProvider {
   /**
    * The event to listener mappings for the application.
    *
-   * @unreleased
+   * @since 1.0.0
    *
    * @var array<class-string, array<int, class-string>>
    */
@@ -30,7 +30,7 @@ class EventServiceProvider extends ServiceProvider {
   /**
    * Register any events for your application.
    *
-   * @unreleased
+   * @since 1.0.0
    */
   public function boot(): void {
   }
@@ -38,7 +38,7 @@ class EventServiceProvider extends ServiceProvider {
   /**
    * Determine if events and listeners should be automatically discovered.
    *
-   * @unreleased
+   * @since 1.0.0
    */
   public function shouldDiscoverEvents(): bool {
     return false;

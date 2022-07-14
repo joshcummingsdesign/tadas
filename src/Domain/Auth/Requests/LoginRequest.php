@@ -14,13 +14,13 @@ use Illuminate\Validation\ValidationException;
 /**
  * Login request.
  *
- * @unreleased
+ * @since 1.0.0
  */
 class LoginRequest extends FormRequest {
   /**
    * Determine if the user is authorized to make this request.
    *
-   * @unreleased
+   * @since 1.0.0
    */
   public function authorize(): bool {
     return true;
@@ -29,7 +29,7 @@ class LoginRequest extends FormRequest {
   /**
    * Get the validation rules that apply to the request.
    *
-   * @unreleased
+   * @since 1.0.0
    */
   public function rules(): array {
     return [
@@ -41,7 +41,7 @@ class LoginRequest extends FormRequest {
   /**
    * Attempt to authenticate the request's credentials.
    *
-   * @unreleased
+   * @since 1.0.0
    *
    * @throws ValidationException
    */
@@ -62,7 +62,7 @@ class LoginRequest extends FormRequest {
   /**
    * Ensure the login request is not rate limited.
    *
-   * @unreleased
+   * @since 1.0.0
    *
    * @throws ValidationException
    */
@@ -86,7 +86,7 @@ class LoginRequest extends FormRequest {
   /**
    * Get the rate limiting throttle key for the request.
    *
-   * @unreleased
+   * @since 1.0.0
    */
   public function throttleKey(): string {
     return Str::lower($this->input('email')).'|'.$this->ip();

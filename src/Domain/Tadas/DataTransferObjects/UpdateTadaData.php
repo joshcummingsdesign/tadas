@@ -7,7 +7,7 @@ namespace Domain\Tadas\DataTransferObjects;
 /**
  * Update tada data.
  *
- * @unreleased
+ * @since 1.0.0
  */
 class UpdateTadaData {
   public function __construct(

@@ -7,7 +7,7 @@ namespace Domain\Tadas\DataTransferObjects;
 /**
  * Store tada data.
  *
- * @unreleased
+ * @since 1.0.0
  */
 class StoreTadaData {
   public function __construct(

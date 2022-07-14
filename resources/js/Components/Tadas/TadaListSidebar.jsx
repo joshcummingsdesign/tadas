@@ -6,7 +6,7 @@ import { css } from "@emotion/react";
 /**
  * TadaListSidebar component.
  *
- * @unreleased
+ * @since 1.0.0
  */
 export default function TadaListSidebar({ listId, tadaLists }) {
   return (

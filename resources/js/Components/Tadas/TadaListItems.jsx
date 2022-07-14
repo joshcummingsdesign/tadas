@@ -7,7 +7,7 @@ import { Inertia } from "@inertiajs/inertia";
 /**
  * TadaListItems component.
  *
- * @unreleased
+ * @since 1.0.0
  */
 export default function TadaListItems({ listId, tadaLists }) {
   const addTadaList = () => {

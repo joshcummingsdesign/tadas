@@ -9,7 +9,7 @@ import { css } from "@emotion/react";
 /**
  * Verify email page.
  *
- * @unreleased
+ * @since 1.0.0
  */
 export default function VerifyEmail({ status }) {
   const { post, processing } = useForm();

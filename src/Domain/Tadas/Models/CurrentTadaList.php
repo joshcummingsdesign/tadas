@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 /**
  * CurrentTadaList model.
  *
- * @unreleased
+ * @since 1.0.0
  * @mixin IdeHelperCurrentTadaList
  */
 class CurrentTadaList extends Model {
@@ -19,7 +19,7 @@ class CurrentTadaList extends Model {
   /**
    * The attributes that are mass assignable.
    *
-   * @unreleased
+   * @since 1.0.0
    *
    * @var array<int, string>
    */
@@ -31,7 +31,7 @@ class CurrentTadaList extends Model {
   /**
    * Get the user a current tada list belongs to.
    *
-   * @unreleased
+   * @since 1.0.0
    */
   public function user(): BelongsTo {
     return $this->belongsTo(User::class);

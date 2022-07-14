@@ -10,13 +10,13 @@ use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 /**
  * The console kernel.
  *
- * @unreleased
+ * @since 1.0.0
  */
 class Kernel extends ConsoleKernel {
   /**
    * Define the application's command schedule.
    *
-   * @unreleased
+   * @since 1.0.0
    */
   protected function schedule(Schedule $schedule): void {
     // $schedule->command('inspire')->hourly();
@@ -25,7 +25,7 @@ class Kernel extends ConsoleKernel {
   /**
    * Register the commands for the application.
    *
-   * @unreleased
+   * @since 1.0.0
    */
   protected function commands(): void {
     $this->load(__DIR__.'/Commands');

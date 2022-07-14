@@ -3,7 +3,7 @@ import { createTheme } from "@mui/material/styles";
 /**
  * Get the theme object.
  *
- * @unreleased
+ * @since 1.0.0
  */
 export const getThemeObject = (mode) =>
   createTheme({

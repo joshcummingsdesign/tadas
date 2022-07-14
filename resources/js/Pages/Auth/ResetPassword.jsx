@@ -9,7 +9,7 @@ import Link from "@/Components/Link";
 /**
  * ResetPassword page.
  *
- * @unreleased
+ * @since 1.0.0
  */
 export default function ResetPassword({ token, email }) {
   const { data, setData, post, processing, errors, reset } = useForm({

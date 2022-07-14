@@ -16,13 +16,13 @@ use Inertia\Response;
 /**
  * Confirmable password controller.
  *
- * @unreleased
+ * @since 1.0.0
  */
 class ConfirmablePasswordController extends Controller {
   /**
    * Show the confirm password view.
    *
-   * @unreleased
+   * @since 1.0.0
    */
   public function show(): Response {
     return Inertia::render('Auth/ConfirmPassword');
@@ -31,7 +31,7 @@ class ConfirmablePasswordController extends Controller {
   /**
    * Confirm the user's password.
    *
-   * @unreleased
+   * @since 1.0.0
    *
    * @throws ValidationException
    */

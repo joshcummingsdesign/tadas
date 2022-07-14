@@ -7,7 +7,7 @@ use Domain\Tadas\DataTransferObjects\UpdateTadaData;
 /**
  * UpdateTadaData factory.
  *
- * @unreleased
+ * @since 1.0.0
  */
 class UpdateTadaDataFactory {
   public ?string $name;

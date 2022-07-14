@@ -10,13 +10,13 @@ use Illuminate\Http\Request;
 /**
  * Authenticate middleware.
  *
- * @unreleased
+ * @since 1.0.0
  */
 class Authenticate extends Middleware {
   /**
    * Get the path the user should be redirected to when they are not authenticated.
    *
-   * @unreleased
+   * @since 1.0.0
    *
    * @param Request $request
    */

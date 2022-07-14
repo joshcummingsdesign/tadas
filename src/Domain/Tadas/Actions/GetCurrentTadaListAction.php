@@ -10,13 +10,13 @@ use Domain\User\Models\User;
 /**
  * Get current tada list action.
  *
- * @unreleased
+ * @since 1.0.0
  */
 class GetCurrentTadaListAction {
   /**
    * Invoke the action.
    *
-   * @unreleased
+   * @since 1.0.0
    */
   public function __invoke(User $user): ?TadaList {
     $tadaListId =  $user->currentTadaList->tada_list_id ?? null;

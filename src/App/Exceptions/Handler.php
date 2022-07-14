@@ -11,13 +11,13 @@ use Throwable;
 /**
  * The exception handler.
  *
- * @unreleased
+ * @since 1.0.0
  */
 class Handler extends ExceptionHandler {
   /**
    * A list of exception types with their corresponding custom log levels.
    *
-   * @unreleased
+   * @since 1.0.0
    *
    * @var array<class-string<Throwable>, LogLevel::*>
    */
@@ -26,7 +26,7 @@ class Handler extends ExceptionHandler {
   /**
    * A list of the exception types that are not reported.
    *
-   * @unreleased
+   * @since 1.0.0
    *
    * @var array<int, class-string<\Throwable>>
    */
@@ -35,7 +35,7 @@ class Handler extends ExceptionHandler {
   /**
    * A list of the inputs that are never flashed to the session on validation exceptions.
    *
-   * @unreleased
+   * @since 1.0.0
    *
    * @var array<int, string>
    */
@@ -48,7 +48,7 @@ class Handler extends ExceptionHandler {
   /**
    * Register the exception handling callbacks for the application.
    *
-   * @unreleased
+   * @since 1.0.0
    */
   public function register(): void {
     $this->reportable(function (Throwable $e) {

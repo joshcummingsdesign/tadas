@@ -4,7 +4,7 @@ import { useSnackbar } from "notistack";
 /**
  * FormErrors component.
  *
- * @unreleased
+ * @since 1.0.0
  */
 export default function ErrorSnackbar({ errors }) {
   const { enqueueSnackbar } = useSnackbar();

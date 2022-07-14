@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 /**
  * User factory.
  *
- * @unreleased
+ * @since 1.0.0
  */
 class UserFactory {
   public Carbon|string|null $email_verified_at = '2022-07-14 05:59:16';

@@ -17,13 +17,13 @@ use Inertia\Response;
 /**
  * Authenticated session controller.
  *
- * @unreleased
+ * @since 1.0.0
  */
 class AuthenticatedSessionController extends Controller {
   /**
    * Display the login view.
    *
-   * @unreleased
+   * @since 1.0.0
    */
   public function create(): Response {
     return Inertia::render('Auth/Login', [
@@ -35,7 +35,7 @@ class AuthenticatedSessionController extends Controller {
   /**
    * Handle an incoming authentication request.
    *
-   * @unreleased
+   * @since 1.0.0
    */
   public function store(LoginRequest $request): RedirectResponse {
     $request->authenticate();
@@ -48,7 +48,7 @@ class AuthenticatedSessionController extends Controller {
   /**
    * Destroy an authenticated session.
    *
-   * @unreleased
+   * @since 1.0.0
    */
   public function destroy(Request $request): RedirectResponse {
     Auth::guard('web')->logout();

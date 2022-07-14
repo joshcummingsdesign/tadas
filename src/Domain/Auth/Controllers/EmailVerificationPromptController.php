@@ -14,13 +14,13 @@ use Inertia\Response;
 /**
  * Email verification prompt controller.
  *
- * @unreleased
+ * @since 1.0.0
  */
 class EmailVerificationPromptController extends Controller {
   /**
    * Display the email verification prompt.
    *
-   * @unreleased
+   * @since 1.0.0
    */
   public function __invoke(Request $request): RedirectResponse|Response {
     return $request->user()->hasVerifiedEmail()

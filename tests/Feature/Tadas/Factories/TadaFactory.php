@@ -7,7 +7,7 @@ use Domain\Tadas\Models\Tada;
 /**
  * Tada factory.
  *
- * @unreleased
+ * @since 1.0.0
  */
 class TadaFactory {
   public int $user_id;

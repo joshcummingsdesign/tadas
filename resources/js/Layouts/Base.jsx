@@ -12,7 +12,7 @@ import {
 /**
  * Base layout.
  *
- * @unreleased
+ * @since 1.0.0
  */
 export default function Base({ auth, drawerItems, children }) {
   const [mode, setMode] = useState("light");

@@ -4,7 +4,7 @@ import Tadas from "@/Layouts/Tadas";
 /**
  * TadaList page.
  *
- * @unreleased
+ * @since 1.0.0
  */
 export default function TadaList({
   auth,

@@ -20,13 +20,13 @@ use Illuminate\Support\Facades\Redirect;
 /**
  * Tadas controller.
  *
- * @unreleased
+ * @since 1.0.0
  */
 class TadasController extends Controller {
   /**
    * Store a tada.
    *
-   * @unreleased
+   * @since 1.0.0
    */
   public function store(StoreTadaRequest $request): RedirectResponse {
     $tadaData = new StoreTadaData(...$request->validated());
@@ -45,7 +45,7 @@ class TadasController extends Controller {
   /**
    * Update the specified tada list.
    *
-   * @unreleased
+   * @since 1.0.0
    */
   public function update(UpdateTadaRequest $request, int $id): RedirectResponse {
     $tadaData = new UpdateTadaData(...$request->validated());
@@ -64,7 +64,7 @@ class TadasController extends Controller {
   /**
    * Delete the specified tada.
    *
-   * @unreleased
+   * @since 1.0.0
    */
   public function destroy(Request $request, int $id): RedirectResponse {
     $user = $request->user();

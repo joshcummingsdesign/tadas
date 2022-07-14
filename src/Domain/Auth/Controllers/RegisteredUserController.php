@@ -19,13 +19,13 @@ use Inertia\Response;
 /**
  * Registerd user controller.
  *
- * @unreleased
+ * @since 1.0.0
  */
 class RegisteredUserController extends Controller {
   /**
    * Display the registration view.
    *
-   * @unreleased
+   * @since 1.0.0
    */
   public function create(): Response {
     return Inertia::render('Auth/Register');
@@ -34,7 +34,7 @@ class RegisteredUserController extends Controller {
   /**
    * Handle an incoming registration request.
    *
-   * @unreleased
+   * @since 1.0.0
    */
   public function store(Request $request): RedirectResponse {
     $request->validate([

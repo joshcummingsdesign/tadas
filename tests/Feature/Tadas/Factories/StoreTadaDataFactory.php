@@ -7,7 +7,7 @@ use Domain\Tadas\DataTransferObjects\StoreTadaData;
 /**
  * StoreTadaData factory.
  *
- * @unreleased
+ * @since 1.0.0
  */
 class StoreTadaDataFactory {
   public ?string $name;

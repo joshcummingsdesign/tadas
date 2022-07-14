@@ -10,13 +10,13 @@ use Illuminate\Http\Request;
 /**
  * Trust proxies middleware.
  *
- * @unreleased
+ * @since 1.0.0
  */
 class TrustProxies extends Middleware {
   /**
    * The trusted proxies for this application.
    *
-   * @unreleased
+   * @since 1.0.0
    *
    * @var array<int, string>|string|null
    */
@@ -25,7 +25,7 @@ class TrustProxies extends Middleware {
   /**
    * The headers that should be used to detect proxies.
    *
-   * @unreleased
+   * @since 1.0.0
    *
    * @var int
    */

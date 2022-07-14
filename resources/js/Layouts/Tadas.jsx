@@ -12,7 +12,7 @@ import ErrorSnackbar from "@/Components/Error/ErrorSnackbar";
 /**
  * Tadas layout.
  *
- * @unreleased
+ * @since 1.0.0
  */
 export default function Tadas({
   auth,

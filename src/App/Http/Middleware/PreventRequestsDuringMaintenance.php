@@ -9,13 +9,13 @@ use Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance as Mi
 /**
  * Prevent requests during maintenance middleware.
  *
- * @unreleased
+ * @since 1.0.0
  */
 class PreventRequestsDuringMaintenance extends Middleware {
   /**
    * The URIs that should be reachable while maintenance mode is enabled.
    *
-   * @unreleased
+   * @since 1.0.0
    *
    * @var array<int, string>
    */

@@ -4,7 +4,7 @@ import { Alert } from "@mui/material";
 /**
  * FormErrors component.
  *
- * @unreleased
+ * @since 1.0.0
  */
 export default function FormErrors({ className, errors }) {
   return (

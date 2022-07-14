@@ -9,13 +9,13 @@ use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvid
 /**
  * Auth service provider.
  *
- * @unreleased
+ * @since 1.0.0
  */
 class AuthServiceProvider extends ServiceProvider {
   /**
    * The model to policy mappings for the application.
    *
-   * @unreleased
+   * @since 1.0.0
    *
    * @var array<class-string, class-string>
    */
@@ -24,7 +24,7 @@ class AuthServiceProvider extends ServiceProvider {
   /**
    * Register any authentication / authorization services.
    *
-   * @unreleased
+   * @since 1.0.0
    */
   public function boot(): void {
     $this->registerPolicies();
