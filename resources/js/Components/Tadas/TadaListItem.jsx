@@ -1,7 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import React, { useState } from "react";
 import { Inertia } from "@inertiajs/inertia";
-import { Link } from "@inertiajs/inertia-react";
 import { MoreHoriz } from "@mui/icons-material";
 import { css } from "@emotion/react";
 import {

@@ -3,6 +3,7 @@ import AddButton from "@/Components/AddButton";
 import TadaListItem from "@/Components/Tadas/TadaListItem";
 import { Inertia } from "@inertiajs/inertia";
 import { List } from "@mui/material";
+import { strings } from "@/strings";
 
 /**
  * TadaListItems component.
@@ -26,7 +27,7 @@ export default function TadaListItems({
     Inertia.post(
       route("tadaLists.store"),
       {
-        name: "Untitled List",
+        name: strings.defaultTadaListTitle,
       },
       { replace: true }
     );

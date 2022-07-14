@@ -1,8 +1,10 @@
 /** @jsxImportSource @emotion/react */
 import React, { useState, useEffect } from "react";
+import BareTextInput from "@/Components/Form/BareTextInput";
+import { Inertia } from "@inertiajs/inertia";
 import { MoreHoriz } from "@mui/icons-material";
 import { css } from "@emotion/react";
-import { Inertia } from "@inertiajs/inertia";
+import { strings } from "@/strings";
 import {
   Paper,
   ListItem,
@@ -14,7 +16,6 @@ import {
   Menu,
   MenuItem,
 } from "@mui/material";
-import BareTextInput from "@/Components/Form/BareTextInput";
 
 /**
  * Tada component.
@@ -64,7 +65,7 @@ export default function Tada({
   };
 
   const handleTitleUpdate = () => {
-    const name = titleText || "Untitled Item";
+    const name = titleText || strings.defaultTadaTitle;
 
     setIsEditingTitle(false);
     setTitleText(name);
