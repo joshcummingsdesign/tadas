@@ -1,7 +1,7 @@
 /**
  * The strings object.
  *
- * @unreleased
+ * @since 1.0.1
  */
 export const strings = {
   defaultTadaListTitle: "Untitled List",
