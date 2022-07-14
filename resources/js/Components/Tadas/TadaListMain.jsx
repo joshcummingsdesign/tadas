@@ -88,7 +88,14 @@ export default function TadaListMain({ isAddTadaFocused, tadaList, tadas }) {
   const handelKeyDown = (e) => {
     if (e.key === "Enter") {
       handleTitleUpdate();
-      addTada(tadaList.id);
+
+      // On enter key add a new item if there are none
+      // Otherwise, focus the add button
+      if (!tadas.length) {
+        addTada(tadaList.id);
+      } else {
+        addButton.current.focus();
+      }
     }
 
     if (e.key === "Escape") {
