@@ -12,7 +12,7 @@ use Illuminate\Support\Str;
  * @unreleased
  */
 class UserFactory {
-  public Carbon|int|null $email_verified_at = 0;
+  public Carbon|string|null $email_verified_at = '2022-07-14 05:59:16';
 
   public static function new(): self {
     return new self();
@@ -25,7 +25,7 @@ class UserFactory {
       'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
     ], $overrides));
 
-    $user->email_verified_at = $this->email_verified_at === 0 ? now() : $this->email_verified_at;
+    $user->email_verified_at = is_string($this->email_verified_at) ? now() : $this->email_verified_at;
     $user->remember_token = Str::random(10);
 
     $user->save();
