@@ -8,6 +8,7 @@ import { Inertia } from "@inertiajs/inertia";
 import { css } from "@emotion/react";
 import { strings } from "@/strings";
 import { useTheme, Typography, Stack } from "@mui/material";
+import { DragDropContext, Droppable } from "react-beautiful-dnd";
 
 /**
  * TadaListMain component.
@@ -17,11 +18,21 @@ import { useTheme, Typography, Stack } from "@mui/material";
 export default function TadaListMain({ isAddTadaFocused, tadaList, tadas }) {
   const [titleText, setTitleText] = useState("");
   const [isEditingTitle, setIsEditingTitle] = useState(false);
+  const [orderedTadas, setOrderedTadas] = useState({});
 
   const theme = useTheme();
   const addButton = useRef(null);
   const tadaListId = useRef(null);
   const addButtonClicked = useRef(false);
+
+  useEffect(() => {
+    const newTadas = tadas.reduce((acc, tada) => {
+      acc[`tada-${tada.id}`] = tada;
+      return acc;
+    }, {});
+
+    setOrderedTadas(newTadas);
+  }, [tadas]);
 
   useEffect(() => {
     if (isAddTadaFocused) {
@@ -112,6 +123,31 @@ export default function TadaListMain({ isAddTadaFocused, tadaList, tadas }) {
     addTada(tadaList.id);
   };
 
+  const handleDragEnd = ({ source, destination, draggableId }) => {
+    if (!destination) {
+      return;
+    }
+
+    if (
+      destination.droppableId === source.droppableId &&
+      destination.index === source.index
+    ) {
+      return;
+    }
+
+    // Re-order list
+    const tadaIds = Object.keys(orderedTadas);
+    tadaIds.splice(source.index, 1);
+    tadaIds.splice(destination.index, 0, draggableId);
+
+    const newTadas = tadaIds.reduce((acc, tadaId) => {
+      acc[tadaId] = orderedTadas[tadaId];
+      return acc;
+    }, {});
+
+    setOrderedTadas(newTadas);
+  };
+
   return (
     <Panel>
       <div
@@ -153,25 +189,36 @@ export default function TadaListMain({ isAddTadaFocused, tadaList, tadas }) {
                 {titleText}
               </Typography>
             )}
-            <Stack spacing={3}>
-              {tadas.map((tada, i) => (
-                <Tada
-                  key={tada.id}
-                  tada={tada}
-                  onTadaInputEnterKey={handleTadaInputEnterKey}
-                  editOnInit={
-                    addButtonClicked.current && i === tadas.length - 1
-                  }
-                  onTadaTitleBlur={handleTadaTitleBlur}
-                />
-              ))}
-              <AddButton
-                innerRef={addButton}
-                onClick={addTada}
-                disablePadding={true}
-                autoFocus={true}
-              />
-            </Stack>
+            <DragDropContext onDragEnd={handleDragEnd}>
+              <Droppable droppableId="tada-list">
+                {({ droppableProps, innerRef, placeholder }) => (
+                  <div {...droppableProps} ref={innerRef}>
+                    <Stack spacing={3}>
+                      {Object.keys(orderedTadas).map((tadaId, index) => (
+                        <Tada
+                          key={tadaId}
+                          tada={orderedTadas[tadaId]}
+                          index={index}
+                          onTadaInputEnterKey={handleTadaInputEnterKey}
+                          editOnInit={
+                            addButtonClicked.current &&
+                            index === tadas.length - 1
+                          }
+                          onTadaTitleBlur={handleTadaTitleBlur}
+                        />
+                      ))}
+                      {placeholder}
+                      <AddButton
+                        innerRef={addButton}
+                        onClick={addTada}
+                        disablePadding={true}
+                        autoFocus={true}
+                      />
+                    </Stack>
+                  </div>
+                )}
+              </Droppable>
+            </DragDropContext>
           </Fragment>
         )}
       </div>
