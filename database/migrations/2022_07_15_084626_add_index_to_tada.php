@@ -11,7 +11,9 @@ return new class extends Migration {
    * @return void
    */
   public function up() {
-    //
+    Schema::table('tadas', function (Blueprint $table) {
+      $table->unsignedBigInteger('index');
+    });
   }
 
   /**
@@ -20,6 +22,8 @@ return new class extends Migration {
    * @return void
    */
   public function down() {
-    //
+    Schema::table('tadas', function (Blueprint $table) {
+      $table->dropColumn('index');
+    });
   }
 };

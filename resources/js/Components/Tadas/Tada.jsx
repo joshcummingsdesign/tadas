@@ -2,9 +2,10 @@
 import React, { useState, useEffect } from "react";
 import BareTextInput from "@/Components/Form/BareTextInput";
 import { Inertia } from "@inertiajs/inertia";
-import { MoreHoriz } from "@mui/icons-material";
+import { MoreHoriz, DragIndicator } from "@mui/icons-material";
 import { css } from "@emotion/react";
 import { strings } from "@/strings";
+import { Draggable } from "react-beautiful-dnd";
 import {
   Paper,
   ListItem,
@@ -26,6 +27,7 @@ export default function Tada({
   className,
   editOnInit,
   tada,
+  index,
   onTadaTitleBlur,
   onTadaInputEnterKey,
 }) {
@@ -115,60 +117,84 @@ export default function Tada({
   };
 
   return (
-    <Paper className={className} elevation={3} sx={{ padding: "0.5rem" }}>
-      <ListItem disablePadding={true}>
-        <ListItemIcon>
-          <Checkbox onChange={handleToggleCheckbox} checked={isCompleted} />
-        </ListItemIcon>
-        {isEditingTitle ? (
-          <BareTextInput
-            css={css`
-              width: 100%;
-            `}
-            variant="body1"
-            autoFocus={true}
-            onFocus={handleTitleInputFocus}
-            onBlur={handleBlur}
-            onKeyDown={handelKeyDown}
-            onChange={handleTitleChange}
-            value={titleText}
-          />
-        ) : (
-          <ListItemText
-            sx={{ fontWeight: "bold" }}
-            primary={titleText}
-            onClick={handleTitleFocus}
-            onFocus={handleTitleFocus}
-            tabIndex={0}
-          />
-        )}
-        <IconButton onClick={handleMenuOpen}>
-          <MoreHoriz />
-        </IconButton>
-        <Menu
-          id={`menu-tada-item-${tada.id}`}
-          anchorEl={anchorEl}
-          anchorOrigin={{
-            vertical: "top",
-            horizontal: "right",
-          }}
-          transformOrigin={{
-            vertical: "top",
-            horizontal: "right",
-          }}
-          open={Boolean(anchorEl)}
-          onClose={handleMenuClose}
+    <Draggable draggableId={`tada-${tada.id}`} index={index}>
+      {({ draggableProps, dragHandleProps, innerRef }) => (
+        <div
+          css={css`
+            margin-bottom: ${theme.spacing(3)};
+          `}
+          {...draggableProps}
+          ref={innerRef}
         >
-          <MenuItem
-            css={css`
-              color: ${theme.palette.error.main};
-            `}
-            onClick={(e) => onDelete(e, tada.id)}
-          >
-            Delete
-          </MenuItem>
-        </Menu>
-      </ListItem>
-    </Paper>
+          <Paper className={className} elevation={3} sx={{ padding: "0.5rem" }}>
+            <ListItem disablePadding={true}>
+              <div
+                css={css`
+                  display: flex;
+                  align-items: center;
+                `}
+                {...dragHandleProps}
+              >
+                <DragIndicator sx={{ color: "grey.500" }} />
+              </div>
+              <ListItemIcon>
+                <Checkbox
+                  onChange={handleToggleCheckbox}
+                  checked={isCompleted}
+                />
+              </ListItemIcon>
+              {isEditingTitle ? (
+                <BareTextInput
+                  css={css`
+                    width: 100%;
+                  `}
+                  variant="body1"
+                  autoFocus={true}
+                  onFocus={handleTitleInputFocus}
+                  onBlur={handleBlur}
+                  onKeyDown={handelKeyDown}
+                  onChange={handleTitleChange}
+                  value={titleText}
+                />
+              ) : (
+                <ListItemText
+                  sx={{ fontWeight: "bold" }}
+                  primary={titleText}
+                  onClick={handleTitleFocus}
+                  onFocus={handleTitleFocus}
+                  tabIndex={0}
+                />
+              )}
+              <IconButton onClick={handleMenuOpen}>
+                <MoreHoriz />
+              </IconButton>
+              <Menu
+                id={`menu-tada-item-${tada.id}`}
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={Boolean(anchorEl)}
+                onClose={handleMenuClose}
+              >
+                <MenuItem
+                  css={css`
+                    color: ${theme.palette.error.main};
+                  `}
+                  onClick={(e) => onDelete(e, tada.id)}
+                >
+                  Delete
+                </MenuItem>
+              </Menu>
+            </ListItem>
+          </Paper>
+        </div>
+      )}
+    </Draggable>
   );
 }

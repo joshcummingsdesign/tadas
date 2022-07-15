@@ -19,6 +19,6 @@ class GetTadasAction {
    * @since 1.0.0
    */
   public function __invoke(TadaList $tadaList): Collection {
-    return $tadaList->tadas()->get();
+    return $tadaList->tadas()->orderBy('index')->get();
   }
 }
