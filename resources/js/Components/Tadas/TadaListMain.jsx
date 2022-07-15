@@ -7,7 +7,7 @@ import Tada from "@/Components/Tadas/Tada";
 import { Inertia } from "@inertiajs/inertia";
 import { css } from "@emotion/react";
 import { strings } from "@/strings";
-import { useTheme, Typography, Stack } from "@mui/material";
+import { useTheme, Typography } from "@mui/material";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 
 /**
@@ -193,28 +193,25 @@ export default function TadaListMain({ isAddTadaFocused, tadaList, tadas }) {
               <Droppable droppableId="tada-list">
                 {({ droppableProps, innerRef, placeholder }) => (
                   <div {...droppableProps} ref={innerRef}>
-                    <Stack spacing={3}>
-                      {Object.keys(orderedTadas).map((tadaId, index) => (
-                        <Tada
-                          key={tadaId}
-                          tada={orderedTadas[tadaId]}
-                          index={index}
-                          onTadaInputEnterKey={handleTadaInputEnterKey}
-                          editOnInit={
-                            addButtonClicked.current &&
-                            index === tadas.length - 1
-                          }
-                          onTadaTitleBlur={handleTadaTitleBlur}
-                        />
-                      ))}
-                      {placeholder}
-                      <AddButton
-                        innerRef={addButton}
-                        onClick={addTada}
-                        disablePadding={true}
-                        autoFocus={true}
+                    {Object.keys(orderedTadas).map((tadaId, index) => (
+                      <Tada
+                        key={tadaId}
+                        tada={orderedTadas[tadaId]}
+                        index={index}
+                        onTadaInputEnterKey={handleTadaInputEnterKey}
+                        editOnInit={
+                          addButtonClicked.current && index === tadas.length - 1
+                        }
+                        onTadaTitleBlur={handleTadaTitleBlur}
                       />
-                    </Stack>
+                    ))}
+                    {placeholder}
+                    <AddButton
+                      innerRef={addButton}
+                      onClick={addTada}
+                      disablePadding={true}
+                      autoFocus={true}
+                    />
                   </div>
                 )}
               </Droppable>

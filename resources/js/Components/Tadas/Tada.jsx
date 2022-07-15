@@ -119,7 +119,13 @@ export default function Tada({
   return (
     <Draggable draggableId={`tada-${tada.id}`} index={index}>
       {({ draggableProps, dragHandleProps, innerRef }) => (
-        <div {...draggableProps} ref={innerRef}>
+        <div
+          css={css`
+            margin-bottom: ${theme.spacing(3)};
+          `}
+          {...draggableProps}
+          ref={innerRef}
+        >
           <Paper className={className} elevation={3} sx={{ padding: "0.5rem" }}>
             <ListItem disablePadding={true}>
               <div
