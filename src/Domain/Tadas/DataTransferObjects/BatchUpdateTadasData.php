@@ -7,7 +7,7 @@ namespace Domain\Tadas\DataTransferObjects;
 /**
  * Batch update tada data.
  *
- * @unreleased
+ * @since 1.3.0
  */
 class BatchUpdateTadasData {
   public function __construct(

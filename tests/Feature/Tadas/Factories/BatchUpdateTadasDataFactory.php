@@ -7,7 +7,7 @@ use Domain\Tadas\DataTransferObjects\BatchUpdateTadasData;
 /**
  * BatchUpdateTadaData factory.
  *
- * @unreleased
+ * @since 1.3.0
  */
 class BatchUpdateTadasDataFactory {
   public int $id;

@@ -11,13 +11,13 @@ use Domain\User\Models\User;
 /**
  * Batch update tadas action.
  *
- * @unreleased
+ * @since 1.3.0
  */
 class BatchUpdateTadasAction {
   /**
    * Invoke the action.
    *
-   * @unreleased
+   * @since 1.3.0
    *
    * @param BatchUpdateTadasData[] $tadasData
    *
