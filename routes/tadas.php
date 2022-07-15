@@ -24,6 +24,9 @@ Route::middleware('auth')->group(function () {
   Route::post('/tada', [TadasController::class, 'store'])
     ->name('tadas.store');
 
+  Route::patch('/tada', [TadasController::class, 'batchUpdate'])
+    ->name('tadas.batchUpdate');
+
   Route::patch('/tada/{id}', [TadasController::class, 'update'])
     ->name('tadas.update');
 

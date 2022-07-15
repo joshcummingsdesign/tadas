@@ -6,11 +6,14 @@ namespace Domain\Tadas\Controllers;
 
 use App\Exceptions\UnprocessableEntityException;
 use App\Http\Controllers\Controller;
+use Domain\Tadas\Actions\BatchUpdateTadasAction;
 use Domain\Tadas\Actions\CreateTadaAction;
 use Domain\Tadas\Actions\DeleteTadaAction;
 use Domain\Tadas\Actions\UpdateTadaAction;
+use Domain\Tadas\DataTransferObjects\BatchUpdateTadasData;
 use Domain\Tadas\DataTransferObjects\StoreTadaData;
 use Domain\Tadas\DataTransferObjects\UpdateTadaData;
+use Domain\Tadas\Requests\BatchUpdateTadaRequest;
 use Domain\Tadas\Requests\StoreTadaRequest;
 use Domain\Tadas\Requests\UpdateTadaRequest;
 use Illuminate\Http\RedirectResponse;
@@ -35,6 +38,28 @@ class TadasController extends Controller {
 
     try {
       app(CreateTadaAction::class)($user, $tadaData);
+    } catch (UnprocessableEntityException $e) {
+      return Redirect::back()->withErrors($e->getPublicMessage());
+    }
+
+    return Redirect::back();
+  }
+
+  /**
+   * Batch update tadas.
+   *
+   * @unreleased
+   */
+  public function batchUpdate(BatchUpdateTadaRequest $request) {
+    $tadasData = array_reduce($request->validated(), static function ($acc, $val) {
+      $acc[] = new BatchUpdateTadasData(...$val);
+      return $acc;
+    }, []);
+
+    $user = $request->user();
+
+    try {
+      app(BatchUpdateTadasAction::class)($user, $tadasData);
     } catch (UnprocessableEntityException $e) {
       return Redirect::back()->withErrors($e->getPublicMessage());
     }

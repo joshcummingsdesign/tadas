@@ -5,12 +5,13 @@ declare(strict_types=1);
 namespace Domain\Tadas\DataTransferObjects;
 
 /**
- * Update tada data.
+ * Batch update tada data.
  *
- * @since 1.0.0
+ * @unreleased
  */
-class UpdateTadaData {
+class BatchUpdateTadasData {
   public function __construct(
+    public int $id,
     public ?string $name = null,
     public ?bool $is_completed = null,
     public ?int $index = null,
