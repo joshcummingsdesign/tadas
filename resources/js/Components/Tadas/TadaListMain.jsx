@@ -19,6 +19,7 @@ export default function TadaListMain({ isAddTadaFocused, tadaList, tadas }) {
   const [titleText, setTitleText] = useState("");
   const [isEditingTitle, setIsEditingTitle] = useState(false);
   const [orderedTadas, setOrderedTadas] = useState({});
+  const [isDragging, setIsDragging] = useState(false);
 
   const theme = useTheme();
   const addButton = useRef(null);
@@ -123,7 +124,17 @@ export default function TadaListMain({ isAddTadaFocused, tadaList, tadas }) {
     addTada(tadaList.id);
   };
 
+  const handleDragStart = () => {
+    setIsDragging(true);
+
+    if (isEditingTitle) {
+      handleTitleUpdate();
+    }
+  };
+
   const handleDragEnd = ({ source, destination, draggableId }) => {
+    setIsDragging(false);
+
     if (!destination) {
       return;
     }
@@ -202,7 +213,10 @@ export default function TadaListMain({ isAddTadaFocused, tadaList, tadas }) {
                 {titleText}
               </Typography>
             )}
-            <DragDropContext onDragEnd={handleDragEnd}>
+            <DragDropContext
+              onDragStart={handleDragStart}
+              onDragEnd={handleDragEnd}
+            >
               <Droppable droppableId="tada-list">
                 {({ droppableProps, innerRef, placeholder }) => (
                   <div {...droppableProps} ref={innerRef}>
@@ -211,6 +225,7 @@ export default function TadaListMain({ isAddTadaFocused, tadaList, tadas }) {
                         key={tadaId}
                         tada={orderedTadas[tadaId]}
                         index={index}
+                        isDragging={isDragging}
                         onTadaInputEnterKey={handleTadaInputEnterKey}
                         editOnInit={
                           addButtonClicked.current && index === tadas.length - 1

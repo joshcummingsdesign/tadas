@@ -28,6 +28,7 @@ export default function Tada({
   editOnInit,
   tada,
   index,
+  isDragging,
   onTadaTitleBlur,
   onTadaInputEnterKey,
 }) {
@@ -37,6 +38,12 @@ export default function Tada({
   const [anchorEl, setAnchorEl] = useState(null);
 
   const theme = useTheme();
+
+  useEffect(() => {
+    if (isDragging && isEditingTitle) {
+      handleBlur();
+    }
+  }, [isDragging, isEditingTitle]);
 
   useEffect(() => {
     if (editOnInit) {

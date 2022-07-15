@@ -15,6 +15,7 @@ export default function NoTadasFound({ children }) {
     <section
       css={css`
         width: 100%;
+        overflow-y: auto;
         height: calc(100vh - 56px);
         padding: 30px 16px;
         background-color: ${theme.palette.mode === "light"

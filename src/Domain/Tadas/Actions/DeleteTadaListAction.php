@@ -27,6 +27,21 @@ class DeleteTadaListAction {
       throw new UnprocessableEntityException('Invalid TadaList id.');
     }
 
+    $currentTadaList = app(GetCurrentTadaListAction::class)($user);
+
+    if ($currentTadaList && $currentTadaList->id === $tadaList->id) {
+      $tadaList->delete();
+
+      $latest = $user->tadaLists()->first();
+
+
+      if ($latest) {
+        app(SetCurrentTadaListAction::class)($user->id, $latest->id);
+      }
+
+      return;
+    }
+
     $tadaList->delete();
   }
 }

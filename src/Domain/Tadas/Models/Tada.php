@@ -25,7 +25,7 @@ class Tada extends Model {
    */
   protected $attributes = [
     'is_completed' => false,
-    'index' => 0,
+    'index' => 999,
   ];
 
   /**
