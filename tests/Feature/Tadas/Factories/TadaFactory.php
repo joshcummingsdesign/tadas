@@ -12,6 +12,7 @@ use Domain\Tadas\Models\Tada;
 class TadaFactory {
   public int $user_id;
   public int $tada_list_id;
+  public ?int $index;
 
   public static function new(): self {
     return new self();
@@ -23,6 +24,7 @@ class TadaFactory {
       'tada_list_id' => $this->tada_list_id,
       'name' => 'Untitled List',
       'is_completed' => false,
+      'index' => $this->index ?? 0,
     ], $overrides));
   }
 
@@ -35,6 +37,12 @@ class TadaFactory {
   public function withTadaListId(int $id): static {
     $clone = clone $this;
     $clone->tada_list_id = $id;
+    return $clone;
+  }
+
+  public function withIndex(int $index): static {
+    $clone = clone $this;
+    $clone->index = $index;
     return $clone;
   }
 }

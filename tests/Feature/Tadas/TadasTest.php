@@ -66,20 +66,21 @@ class TadasTest extends TestCase {
       ->withIsCompleted(true)
       ->withIndex(1)
       ->create();
-    $tadasData = [$tadaData1, $tadaData2];
 
     $this->actingAs($user)->patch('/tada', [
-      [
-        'id' => $tadaData1->id,
-        'name' => $tadaData1->name,
-        'is_completed' => $tadaData1->is_completed,
-        'index' => $tadaData1->index,
-      ],
-      [
-        'id' => $tadaData2->id,
-        'name' => $tadaData2->name,
-        'is_completed' => $tadaData2->is_completed,
-        'index' => $tadaData2->index,
+      'tadas' => [
+        [
+          'id' => $tadaData1->id,
+          'name' => $tadaData1->name,
+          'is_completed' => $tadaData1->is_completed,
+          'index' => $tadaData1->index,
+        ],
+        [
+          'id' => $tadaData2->id,
+          'name' => $tadaData2->name,
+          'is_completed' => $tadaData2->is_completed,
+          'index' => $tadaData2->index,
+        ],
       ],
     ])
       ->assertStatus(302);

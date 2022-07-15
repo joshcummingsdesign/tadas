@@ -26,10 +26,11 @@ class BatchUpdateTadaRequest extends FormRequest {
    */
   public function rules(): array {
     return [
-      '*.id' => 'required|integer',
-      '*.name' => 'string|max:255',
-      '*.is_completed' => 'boolean',
-      '*.index' => 'integer',
+      'tadas' => 'required|array|min:1',
+      'tadas.*.id' => 'required|integer',
+      'tadas.*.name' => 'string|max:255',
+      'tadas.*.is_completed' => 'boolean',
+      'tadas.*.index' => 'integer',
     ];
   }
 }

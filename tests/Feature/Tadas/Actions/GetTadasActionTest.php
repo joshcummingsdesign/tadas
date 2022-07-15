@@ -15,11 +15,22 @@ class GetTadasActionTest extends TestCase {
   public function testShouldGetTadas(): void {
     $user = UserFactory::new()->create();
     $tadaList = TadaListFactory::new()->withUserId($user->id)->create();
-    $dbTada = TadaFactory::new()->withUserId($user->id)->withTadaListId($tadaList->id)->create();
+    TadaFactory::new()
+      ->withUserId($user->id)
+      ->withTadaListId($tadaList->id)
+      ->withIndex(1)
+      ->create();
+    $tada = TadaFactory::new()
+      ->withUserId($user->id)
+      ->withTadaListId($tadaList->id)
+      ->withIndex(0)
+      ->create();
 
     $tadas = (new GetTadasAction())($tadaList);
 
-    $this->assertEquals($dbTada->getAttributes(), $tadas->first()->getAttributes());
+    $this->assertEquals($tada->getAttributes(), $tadas->first()->getAttributes());
+    $this->assertEquals(0, $tadas->first()->index);
+    $this->assertEquals(1, $tadas->last()->index);
   }
 
   public function testShouldHandleNoneFound(): void {

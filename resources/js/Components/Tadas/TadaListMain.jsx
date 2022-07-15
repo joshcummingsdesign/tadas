@@ -146,6 +146,19 @@ export default function TadaListMain({ isAddTadaFocused, tadaList, tadas }) {
     }, {});
 
     setOrderedTadas(newTadas);
+
+    const tadasData = Object.keys(newTadas).map((tadaId, index) => ({
+      id: newTadas[tadaId].id,
+      index: index,
+    }));
+
+    Inertia.patch(
+      route("tadas.batchUpdate", tadaList.id),
+      { tadas: tadasData },
+      {
+        replace: true,
+      }
+    );
   };
 
   return (

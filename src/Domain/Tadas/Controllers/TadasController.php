@@ -51,7 +51,7 @@ class TadasController extends Controller {
    * @unreleased
    */
   public function batchUpdate(BatchUpdateTadaRequest $request) {
-    $tadasData = array_reduce($request->validated(), static function ($acc, $val) {
+    $tadasData = array_reduce($request->validated()['tadas'], static function ($acc, $val) {
       $acc[] = new BatchUpdateTadasData(...$val);
       return $acc;
     }, []);
