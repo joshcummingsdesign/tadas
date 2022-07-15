@@ -4,7 +4,7 @@ import { useTheme, ListItemButton } from "@mui/material";
 /**
  * AddButton component.
  *
- * @unreleased
+ * @since 1.2.0
  */
 export default function ButtonDotted({
   className,

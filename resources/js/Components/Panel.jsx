@@ -6,7 +6,7 @@ import { useTheme } from "@mui/material";
 /**
  * Panel component.
  *
- * @unreleased
+ * @since 1.2.0
  */
 export default function NoTadasFound({ children }) {
   const theme = useTheme();

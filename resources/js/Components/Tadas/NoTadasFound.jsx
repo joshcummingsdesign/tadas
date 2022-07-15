@@ -11,7 +11,7 @@ import { strings } from "@/strings";
 /**
  * NoTadasFound component.
  *
- * @unreleased
+ * @since 1.2.0
  */
 export default function NoTadasFound() {
   const theme = useTheme();
