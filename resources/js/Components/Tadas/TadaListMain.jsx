@@ -85,22 +85,27 @@ export default function TadaListMain({ isAddTadaFocused, tadaList, tadas }) {
     setTitleText(tadaList.name);
   };
 
-  const handleTitleUpdate = () => {
-    const name = titleText || strings.defaultTadaListTitle;
+  const handleTitleUpdate = () =>
+    new Promise((resolve, reject) => {
+      const name = titleText || strings.defaultTadaListTitle;
 
-    setIsEditingTitle(false);
-    setTitleText(name);
+      setIsEditingTitle(false);
+      setTitleText(name);
 
-    Inertia.patch(
-      route("tadaLists.update", tadaList.id),
-      { name },
-      { replace: true }
-    );
-  };
+      Inertia.patch(
+        route("tadaLists.update", tadaList.id),
+        { name },
+        {
+          replace: true,
+          onSuccess: resolve,
+          onError: reject,
+        }
+      );
+    });
 
-  const handelKeyDown = (e) => {
+  const handelKeyDown = async (e) => {
     if (e.key === "Enter") {
-      handleTitleUpdate();
+      await handleTitleUpdate();
 
       // On enter key add a new item if there are none
       // Otherwise, focus the add button
