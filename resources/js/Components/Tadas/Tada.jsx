@@ -73,23 +73,32 @@ export default function Tada({
     setTitleText(tada.name);
   };
 
-  const handleTitleUpdate = () => {
-    const name = titleText || strings.defaultTadaTitle;
+  const handleTitleUpdate = () =>
+    new Promise((resolve, reject) => {
+      const name = titleText || strings.defaultTadaTitle;
 
-    setIsEditingTitle(false);
-    setTitleText(name);
+      setIsEditingTitle(false);
+      setTitleText(name);
 
-    Inertia.patch(route("tadas.update", tada.id), { name }, { replace: true });
-  };
+      Inertia.patch(
+        route("tadas.update", tada.id),
+        { name },
+        {
+          replace: true,
+          onSuccess: resolve,
+          onError: reject,
+        }
+      );
+    });
 
   const handleBlur = () => {
     onTadaTitleBlur();
     handleTitleUpdate();
   };
 
-  const handelKeyDown = (e) => {
+  const handelKeyDown = async (e) => {
     if (e.key === "Enter") {
-      handleTitleUpdate();
+      await handleTitleUpdate();
       onTadaInputEnterKey();
     }
 
